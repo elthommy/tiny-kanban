@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Archived Cards List - TaskFlow Board</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d141b] dark:text-slate-200">
+<div class="relative flex h-screen w-full overflow-hidden">
+<aside class="w-64 border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3 border-b border-slate-100 dark:border-slate-800">
+<div class="size-8 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">view_kanban</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight dark:text-white">TaskFlow</h2>
+</div>
+<div class="flex-1 p-4 flex flex-col gap-6">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#4c739a] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-sm font-semibold">Current Board</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="archive">archive</span>
+<span class="text-sm font-bold">Archived Tasks</span>
+</a>
+</nav>
+</div>
+<div class="p-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-3 px-2 py-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border border-slate-200 dark:border-slate-700" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzypleOJxnw48H0f8jvrNcyZEp9UbOovnw6YQeR7On5fFfsORARlOYACszoj3n9MG4tN9tIQhiCom4xXTk6SPmLZsG8Sjy1VnYqcMrVyBGL4lYMUZVOYxV_dmtg0ME_dEP_NW6zAo-NMGtiSkr8m3NzwTBsIiAphS38ZfcI5sVVupVdzk1dsJzs2EdyfOtXJtb-zmquRHdKWGpa43TRQiAfeeaxC2MiDa6QqEh5u2uh9BjgPSVbOj5jBao4gXvWZBlEspowuy8d5E");'></div>
+<div class="flex flex-col min-w-0">
+<p class="text-sm font-bold truncate dark:text-white">Alex Rivera</p>
+<p class="text-xs text-[#4c739a] truncate">Pro Plan</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+<div class="max-w-6xl mx-auto py-10 px-8 lg:px-12">
+<div class="flex flex-wrap justify-between items-start gap-6 mb-10">
+<div class="flex flex-col gap-2">
+<h1 class="text-[#0d141b] dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Archived Tasks</h1>
+<p class="text-[#4c739a] text-base font-normal max-w-xl">Review and manage your archived workspace items. Restore tasks to bring them back to your active board.</p>
+</div>
+<div class="flex gap-3">
+<button class="flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg text-sm font-bold hover:bg-blue-600 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg">restore</span>
+<span>Restore All</span>
+</button>
+<button class="flex items-center justify-center p-3 border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/20 transition-colors" title="Clear Archive">
+<span class="material-symbols-outlined">delete_sweep</span>
+</button>
+</div>
+</div>
+<div class="mb-8 border-b border-slate-200 dark:border-slate-800 flex justify-between items-end">
+<div class="flex gap-8">
+<a class="flex items-center gap-2 border-b-2 border-primary text-primary pb-4 font-bold text-sm" href="#">
+<span>All Tasks</span>
+<span class="bg-primary/10 text-primary text-[10px] px-2 py-0.5 rounded-full">12</span>
+</a>
+<a class="flex items-center gap-2 border-b-2 border-transparent text-[#4c739a] pb-4 font-bold text-sm hover:text-[#0d141b] dark:hover:text-white transition-colors" href="#">
+<span>Recently Added</span>
+</a>
+</div>
+<div class="pb-3">
+<div class="flex items-center bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg px-3 py-1.5 gap-2">
+<span class="material-symbols-outlined text-slate-400 text-lg">search</span>
+<input class="bg-transparent border-none p-0 focus:ring-0 text-sm w-48 placeholder:text-slate-400" placeholder="Search archive..." type="text"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-[#0d141b] dark:text-white font-bold text-lg leading-snug">Design System Refresh</h3>
+<p class="text-xs text-slate-500 font-medium">Archived Oct 12, 2023</p>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300 text-[11px] font-bold rounded uppercase tracking-wider">Design</span>
+<span class="px-2.5 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 text-[11px] font-bold rounded uppercase tracking-wider">High Priority</span>
+</div>
+<div class="flex items-center justify-between mt-auto pt-5 border-t border-slate-50 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLHMfJAiWGICgppZgaK1a82IBdLYhoXVdNCL6W9QUbjbhck8Hky99-ISS3syDlPhA2fmvHpXLGX7a66dFmMzz4-C0sGXDwUoEreOYQPA7csCcaMQN9wqlghsgCm2gpa-YJuflVI6TUC_tTVpPKBwCME0Fgpibj6Bfr6khmEioIZHyee9SpJE2i8GKJj8qbU7INPSjdaf7MyMNujSuwB2K-lQYTd1ipBbGKh12TyyKCWeBV2qe3xxEW7948j6aPCcgePos3B2o6FpE');"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCJ2ar_D9IVNxHHSZtqLFwlwfUNLqCM3CMhv0OdtZXzh0ImiXGFoY32yEpvWznX3dXxr7EsSGc5MaMKExtYHW41QgUqmipfZEVtjy4nrlVkCm5HZHNVKHnCuGTGuWJ4Iw3KFbYS7-Et77wM80gezCeDwQmGg0izHc98iXK_3Je9VybL-nJIgR7RXR7lPDsHck1WytJOuFIkg0-7cMGblADFMr4m7Qiue4YCSaGh2lgVn9bTrNxaidXPDqG_ti-byB2JwP4F7P8ZjDs');"></div>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-[#0d141b] dark:text-slate-300 rounded-lg text-xs font-bold hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">unarchive</span>
+                                Restore
+                            </button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-[#0d141b] dark:text-white font-bold text-lg leading-snug">API Documentation Draft</h3>
+<p class="text-xs text-slate-500 font-medium">Archived Oct 10, 2023</p>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 text-[11px] font-bold rounded uppercase tracking-wider">Engineering</span>
+</div>
+<div class="flex items-center justify-between mt-auto pt-5 border-t border-slate-50 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuALhWfsphZFIPw7ouvUzSWVToDT6lu-WzxohqQaq3iokMCUPIOPl9NW6ZIrNSJ-pJcB8DKJGP4PvNlFn5oLw5V11zTaKYHos4cOOg7AdoDpZZ-s0uvJKtkbk1RSzgs3y0Pkuoi_8iUR-dP7vcgysj-2TNYOHl0tO0fzP9WPKIWmUepvCDHj-EQirUu7dzQOvcjZRMBC0_Fvjo7ojdY92m-e8aUXbJuzFtJtJEdOYo_ZQm-r8h2fCy_PG4qwG-x9vC1jy4I7spZ30FE');"></div>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-[#0d141b] dark:text-slate-300 rounded-lg text-xs font-bold hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">unarchive</span>
+                                Restore
+                            </button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-[#0d141b] dark:text-white font-bold text-lg leading-snug">Q3 Performance Analysis</h3>
+<p class="text-xs text-slate-500 font-medium">Archived Oct 08, 2023</p>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300 text-[11px] font-bold rounded uppercase tracking-wider">Marketing</span>
+</div>
+<div class="flex items-center justify-between mt-auto pt-5 border-t border-slate-50 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdC5cPomSwM_rKnaTWtpL_CS8j5dnP5nPif7tLgqGZv0SrP03EXjjVf0ep8AIeUUn5qWojB_2cTL4SaE0ymtmsJwlatIgt8JMgztx_2UvSQry13cZ9ndJsTHfEsRTiOxtZcgObnvXmJSvdYRqAqHGWIwV8H-inOT8D8hPLP8HBMzp8XWVZelQU2KjvXjZJ6Mj1vFMQfIOdxxE_k6pEpNNzsMMjYWonSI3RRFpeyqVsV_Lpan4ZHyzcy12lNuwretrK3wWfxFLoRUM');"></div>
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA9jlP8bv0-15-n9FVMJip_9t8lk5vfiRcgtK2adgwJkmdjpSW4H7itThG9wdkLqBmKqKOCMOF3X7W3COVbKlzjfprMPHUWvT1UJKwDT5Yo19UZ0papRRn2M3kJWX624nGnhKkbGWLgSuLVYVbYoMZqkiI9ZMrtEX9f4DinHE58zPgyVstIbxLsrLKgb3sPXlaPWLsYkEGq2V9oHs_DLEezQUyY8E6li3v7_8H3OEmWeVUbd5xJ4l0-50Et8GBfA0Jw-3zP1NT9XAQ');"></div>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-[#0d141b] dark:text-slate-300 rounded-lg text-xs font-bold hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">unarchive</span>
+                                Restore
+                            </button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 rounded-xl shadow-sm flex flex-col gap-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start">
+<div class="flex flex-col gap-1">
+<h3 class="text-[#0d141b] dark:text-white font-bold text-lg leading-snug">Legal Review: Service Agreement</h3>
+<p class="text-xs text-slate-500 font-medium">Archived Oct 05, 2023</p>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="px-2.5 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300 text-[11px] font-bold rounded uppercase tracking-wider">Legal</span>
+<span class="px-2.5 py-1 bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400 text-[11px] font-bold rounded uppercase tracking-wider">External</span>
+</div>
+<div class="flex items-center justify-between mt-auto pt-5 border-t border-slate-50 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-white dark:border-slate-900 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuByKKz37v8jEa_ElI2nCF2Z-xOSajJeFjcFcFjTvBwnUfN9HW7WEXnf6kMnxR34QXILE7kEF1H3sLaoCKfFe5UIDZ70WFih-85jv1zAdl866E62UgwgnjkTHMborcIow5WC3sx8dVdv6wk7YESaGSN82LwyxnbAPl0aU72XhIw2KfqubTynRJrqtoLGI52xIU8Kb2FX_GhrrlLigN2PUw6eJAUTYZNSujvFvoScV-VIxFlJ33RDjfiZBNTIoaznQjRKB3zR0quPAPE');"></div>
+</div>
+<button class="flex items-center gap-1.5 px-4 py-2 bg-slate-100 dark:bg-slate-800 text-[#0d141b] dark:text-slate-300 rounded-lg text-xs font-bold hover:bg-primary hover:text-white dark:hover:bg-primary dark:hover:text-white transition-all">
+<span class="material-symbols-outlined text-sm">unarchive</span>
+                                Restore
+                            </button>
+</div>
+</div>
+</div>
+<div class="mt-16 flex justify-center">
+<button class="flex items-center gap-2 px-8 py-3 border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 font-bold text-sm rounded-lg hover:bg-white dark:hover:bg-slate-800 hover:border-slate-300 dark:hover:border-slate-700 transition-all shadow-sm">
+                        Load More Tasks
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

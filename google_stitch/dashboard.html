@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TaskFlow Kanban Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0d141b] dark:text-slate-100">
+<div class="relative flex h-screen overflow-hidden">
+<aside class="w-64 flex flex-col border-r border-[#e7edf3] dark:border-slate-800 bg-white dark:bg-background-dark shrink-0">
+<div class="p-6 flex items-center gap-3 text-primary mb-4">
+<div class="size-7">
+<svg fill="currentColor" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 45.8096C19.6865 45.8096 15.4698 44.5305 11.8832 42.134C8.29667 39.7376 5.50128 36.3314 3.85056 32.3462C2.19985 28.361 1.76794 23.9758 2.60947 19.7452C3.451 15.5145 5.52816 11.6284 8.57829 8.5783C11.6284 5.52817 15.5145 3.45101 19.7452 2.60948C23.9758 1.76795 28.361 2.19986 32.3462 3.85057C36.3314 5.50129 39.7376 8.29668 42.134 11.8833C44.5305 15.4698 45.8096 19.6865 45.8096 24L24 24L24 45.8096Z"></path>
+</svg>
+</div>
+<h2 class="text-[#0d141b] dark:text-slate-100 text-xl font-bold tracking-tight">TaskFlow</h2>
+</div>
+<nav class="flex-1 px-3 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-primary bg-primary/10 rounded-lg font-semibold transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">grid_view</span>
+<span>Current Board</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-[#4c739a] dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg font-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[22px]">archive</span>
+<span>Archived Tasks</span>
+</a>
+</nav>
+<div class="p-4 border-t border-[#e7edf3] dark:border-slate-800 mt-auto">
+<div class="flex items-center gap-3 p-2">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-9 border border-slate-200 dark:border-slate-700" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDBTpiCo5urz7IaIUD_3Oxr_yBLa3qLtDP4w874MuyFlzAGbZwzqrZiOXrZgt4OSJZduNKP6neKCxDo-0HOvnP9M1OIdEDXleEetIjHXuQ9BHPdYlQXW05Z5yE2CrUBH98WcCA5Nb8v6RGBt7ryKUQLXqVoZEcz1grE0v3_edSebGudeE27D_m3ST4isJrz3bJCC5zymzLQnnXQuzfzLBhSGcqU49587IAYFf8qcqPWoaUx6JeM2mrxrvxWk-zt74omWFc6WRRL4hs");'></div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold truncate max-w-[120px]">Alex Morgan</span>
+<span class="text-[10px] text-[#4c739a] dark:text-slate-500 uppercase font-bold">Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col overflow-hidden">
+<div class="px-8 py-6 flex items-center justify-between">
+<div>
+<h1 class="text-2xl font-bold text-[#0d141b] dark:text-slate-100">Development Pipeline</h1>
+<p class="text-[#4c739a] text-sm mt-1">Manage your team's current tasks and sprint progress.</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-[#4c739a] text-[20px]">search</span>
+<input class="form-input bg-white dark:bg-slate-800 border-none rounded-lg pl-10 pr-4 py-2 text-sm focus:ring-2 focus:ring-primary/20 w-64 shadow-sm" placeholder="Search tasks..." type="text"/>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-x-auto custom-scrollbar p-8 pt-0">
+<div class="flex items-start gap-6 h-full min-w-max pb-4">
+<div class="flex flex-col w-[350px] bg-[#ebedef] dark:bg-slate-900/50 rounded-xl max-h-full">
+<div class="flex items-center justify-between p-4 sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="text-[#0d141b] dark:text-slate-100 font-bold text-base">To Do</h3>
+<span class="bg-slate-200 dark:bg-slate-800 text-[#4c739a] text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+</div>
+<div class="flex flex-col gap-4 p-4 pt-0 overflow-y-auto custom-scrollbar">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white dark:bg-slate-800 p-4 gap-3 border border-transparent hover:border-primary/30 transition-all group">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDgVnf6kTrtg2kmWFtXUsPvvc98RrAu_Of-KM7LaxHeAegEA-z7DD8qlKyEU9jE8bPFwWUeJx-unv4D6-csqeUqhh3gmjXkzos-RlUMT8SH9hs2SEPMbSaLf8q3oIKPQqJCs-0kKOwW3w3DxZVPaNrOO4cHw77fEi4sUivx9bePLGNIeBQAEYJT6ZRN2y7FpTVgM1SYzv-bZkhm305L-QOEM3vE-ekrazLp2f47U3JyKFMPTWxmgxF0GTNTuc8PEDnI9qdooiIdodk");'></div>
+<div class="flex flex-col gap-2">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400">High Priority</span>
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-blue-100 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">Design</span>
+</div>
+<p class="text-[#0d141b] dark:text-slate-100 text-base font-bold leading-tight tracking-[-0.015em]">Design System Update</p>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-1.5 text-[#4c739a] dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<p class="text-xs font-medium">Oct 25</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-8 px-3 bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100">
+<span>Archive</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white dark:bg-slate-800 p-4 gap-3 border border-transparent hover:border-primary/30 transition-all group">
+<div class="flex flex-col gap-2">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400">Low Priority</span>
+</div>
+<p class="text-[#0d141b] dark:text-slate-100 text-base font-bold leading-tight tracking-[-0.015em]">User Research Interviews</p>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-1.5 text-[#4c739a] dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<p class="text-xs font-medium">Nov 02</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-8 px-3 bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100">
+<span>Archive</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col w-[350px] bg-[#ebedef] dark:bg-slate-900/50 rounded-xl max-h-full">
+<div class="flex items-center justify-between p-4 sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="text-[#0d141b] dark:text-slate-100 font-bold text-base">In Progress</h3>
+<span class="bg-primary/20 text-primary text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+</div>
+<div class="flex flex-col gap-4 p-4 pt-0 overflow-y-auto custom-scrollbar">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white dark:bg-slate-800 p-4 gap-3 border border-transparent hover:border-primary/30 transition-all group">
+<div class="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBqyTPYqtCJH2YWwstP2jr6jXppIsfgXlOWEqPsaP9Xr0TLYW3ZcoMX3h28x6cO-n-PPyijdO--chlAUFN5DLBixkx6EH7kMwEIy7U6aAA6oH2IIm8QAR_adlWRC1j3KVtFklvykQpPO5qE1ECPbG8LJC9qH4by6CzTyS0VsPPqr5Q_Iw1-DsKK0S04XGbkFGDJcMw2kTuvSw0hxVu7hEXRqtNNIBSJ7pa19sHPxQY2iDOUGzV45kGTkvw_rJutb9LQ7BnxVDgLSqE");'></div>
+<div class="flex flex-col gap-2">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400">Development</span>
+</div>
+<p class="text-[#0d141b] dark:text-slate-100 text-base font-bold leading-tight tracking-[-0.015em]">API Integration</p>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-1.5 text-[#4c739a] dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<p class="text-xs font-medium">Oct 28</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-8 px-3 bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100">
+<span>Archive</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white dark:bg-slate-800 p-4 gap-3 border border-transparent hover:border-primary/30 transition-all group">
+<div class="flex flex-col gap-2">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-purple-100 text-purple-600 dark:bg-purple-900/30 dark:text-purple-400">Refactoring</span>
+</div>
+<p class="text-[#0d141b] dark:text-slate-100 text-base font-bold leading-tight tracking-[-0.015em]">Component Library Cleanup</p>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-1.5 text-[#4c739a] dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+<p class="text-xs font-medium">Oct 30</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-8 px-3 bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all opacity-0 group-hover:opacity-100">
+<span>Archive</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col w-[350px] bg-[#ebedef] dark:bg-slate-900/50 rounded-xl max-h-full">
+<div class="flex items-center justify-between p-4 sticky top-0">
+<div class="flex items-center gap-2">
+<h3 class="text-[#0d141b] dark:text-slate-100 font-bold text-base">Done</h3>
+<span class="bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 text-xs font-bold px-2 py-0.5 rounded-full">5</span>
+</div>
+<button class="text-[#4c739a] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">add_circle</span>
+</button>
+</div>
+<div class="flex flex-col gap-4 p-4 pt-0 overflow-y-auto custom-scrollbar">
+<div class="flex flex-col items-stretch justify-start rounded-xl shadow-sm bg-white dark:bg-slate-800 p-4 gap-3 border border-transparent hover:border-primary/30 transition-all group opacity-75 grayscale-[0.3]">
+<div class="flex flex-col gap-2">
+<div class="flex gap-2">
+<span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-400">Operations</span>
+</div>
+<p class="text-[#0d141b] dark:text-slate-100 text-base font-bold leading-tight tracking-[-0.015em] line-through decoration-slate-400">Setup AWS Pipeline</p>
+<div class="flex items-center justify-between mt-1">
+<div class="flex items-center gap-1.5 text-green-600">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<p class="text-xs font-medium">Completed</p>
+</div>
+<button class="flex items-center justify-center rounded-lg h-8 px-3 bg-primary/10 text-primary text-xs font-bold hover:bg-primary hover:text-white transition-all">
+<span>Archive</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col w-[300px] items-center justify-center border-2 border-dashed border-[#cfdbe7] dark:border-slate-800 rounded-xl min-h-[150px] hover:bg-white dark:hover:bg-slate-900 transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[#4c739a] text-[32px] group-hover:text-primary transition-colors">add</span>
+<p class="text-[#4c739a] text-sm font-semibold group-hover:text-primary transition-colors mt-2">Add Section</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>
