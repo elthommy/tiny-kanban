@@ -1,0 +1,122 @@
+# TaskFlow Kanban Board
+
+A full-stack Kanban board application with a Python/FastAPI backend and a React/TypeScript frontend, styled to match Google Stitch designs.
+
+## Tech Stack
+
+**Backend:** Python 3.12+, FastAPI, SQLAlchemy 2.0 (async), SQLite, Pydantic v2
+
+**Frontend:** React 18, TypeScript, Vite, Tailwind CSS 4, @dnd-kit, React Router 6
+
+## Project Structure
+
+```
+simple_kanban/
+├── backend/
+│   ├── app/
+│   │   ├── main.py          # FastAPI app with CORS and lifespan
+│   │   ├── config.py        # Settings
+│   │   ├── database.py      # Async SQLAlchemy engine and session
+│   │   ├── models.py        # ORM models (columns, cards, tags, card_tags)
+│   │   ├── schemas.py       # Pydantic request/response models
+│   │   ├── seed.py          # Demo data seeder
+│   │   └── routers/         # API route handlers
+│   └── tests/               # Async pytest test suite
+├── frontend/
+│   └── src/
+│       ├── api/             # Fetch wrappers per resource
+│       ├── types/           # TypeScript interfaces
+│       ├── hooks/           # useColumns, useArchive, useTags
+│       ├── components/      # layout, board, archive, shared
+│       ├── pages/           # BoardPage, ArchivePage
+│       └── __tests__/       # Vitest component tests
+└── google_stitch/           # Design references
+```
+
+## Getting Started
+
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+Seed the database with demo data:
+
+```bash
+python -m app.seed
+```
+
+Start the development server:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+The API is available at `http://localhost:8000` with interactive docs at `/docs`.
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The dev server runs at `http://localhost:5173` and proxies `/api` requests to the backend.
+
+## Testing
+
+### Backend
+
+```bash
+cd backend
+source .venv/bin/activate
+pytest -v
+```
+
+Linting:
+
+```bash
+black --check app/ tests/
+pyflakes app/ tests/
+```
+
+### Frontend
+
+```bash
+cd frontend
+npx vitest run
+```
+
+Linting and formatting:
+
+```bash
+npx eslint . --max-warnings 0
+npx prettier --check 'src/**/*.{ts,tsx,css}'
+```
+
+## API Overview
+
+All endpoints are under the `/api` prefix.
+
+| Resource | Endpoints |
+|----------|-----------|
+| Columns | `GET /columns`, `POST /columns`, `PATCH /columns/:id`, `DELETE /columns/:id`, `PUT /columns/reorder` |
+| Cards | `POST /columns/:id/cards`, `PATCH /cards/:id`, `DELETE /cards/:id`, `PUT /cards/move`, `POST /cards/:id/archive`, `POST /cards/:id/restore` |
+| Archive | `GET /archive`, `POST /archive/restore-all`, `POST /archive/clear` |
+| Tags | `GET /tags`, `POST /tags`, `DELETE /tags/:id` |
+| Search | `GET /search?q=` |
+
+## Key Features
+
+- Drag-and-drop cards between columns using @dnd-kit
+- Archive and restore cards (column deletion archives its cards)
+- "Done" column styling with opacity, grayscale, and strikethrough
+- Inline editing for column names and card details
+- Tag management with color-coded badges
+- Paginated archive with search
+- Debounced board search
