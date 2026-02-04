@@ -15,6 +15,7 @@ async def list_archive(
     q: str | None = Query(None),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
+    recent_limit: int | None = Query(None, ge=1, le=100),
     db: AsyncSession = Depends(get_db),
 ):
     base = select(Card).where(Card.is_archived == True)  # noqa: E712
@@ -24,12 +25,14 @@ async def list_archive(
     count_q = select(func.count()).select_from(base.subquery())
     total = (await db.execute(count_q)).scalar()
 
-    items_q = (
-        base.options(selectinload(Card.tags))
-        .order_by(Card.archived_at.desc())
-        .offset((page - 1) * page_size)
-        .limit(page_size)
-    )
+    items_q = base.options(selectinload(Card.tags)).order_by(Card.archived_at.desc())
+
+    # If recent_limit is set, ignore pagination and return only N most recent items
+    if recent_limit:
+        items_q = items_q.limit(recent_limit)
+    else:
+        items_q = items_q.offset((page - 1) * page_size).limit(page_size)
+
     result = await db.execute(items_q)
     items = result.scalars().all()
     return ArchivePage(items=items, total=total, page=page, page_size=page_size)
