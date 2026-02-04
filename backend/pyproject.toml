@@ -23,6 +23,10 @@ dev = [
     "pyflakes>=3.2",
 ]
 
+[project.urls]
+Homepage = "https://github.com/elthommy/tiny-kanban"
+Repository = "https://github.com/elthommy/tiny-kanban"
+
 [tool.black]
 line-length = 88
 target-version = ["py312"]
