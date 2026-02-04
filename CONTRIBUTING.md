@@ -25,7 +25,7 @@ Feature requests and enhancement ideas are welcome! Please open an issue describ
 
 ### Pull Requests
 
-1. **Fork the repository** and create a new branch from `main`
+1. **Fork the repository** and create a new branch from `master`
 2. **Make your changes** with clear, descriptive commits
 3. **Test your changes**:
    - Backend: `cd backend && pytest -v`
