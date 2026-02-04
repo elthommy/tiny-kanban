@@ -64,3 +64,29 @@ async def test_clear_archive(client: AsyncClient, archived_cards: list[str]):
 
     archive = await client.get("/api/archive")
     assert archive.json()["total"] == 0
+
+
+@pytest.mark.anyio
+async def test_recent_limit(client: AsyncClient, col_id: str):
+    # Create and archive 25 cards
+    for i in range(25):
+        card = (
+            await client.post(
+                f"/api/columns/{col_id}/cards", json={"title": f"Card {i}"}
+            )
+        ).json()
+        await client.post(f"/api/cards/{card['id']}/archive")
+
+    # Test without recent_limit (should use pagination, default 20 per page)
+    resp = await client.get("/api/archive")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["total"] == 25
+    assert len(data["items"]) == 20  # Default page_size
+
+    # Test with recent_limit=10 (should return only 10 most recent)
+    resp = await client.get("/api/archive", params={"recent_limit": 10})
+    assert resp.status_code == 200
+    data = resp.json()
+    assert data["total"] == 25  # Total is still 25
+    assert len(data["items"]) == 10  # But only 10 items returned

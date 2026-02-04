@@ -4,23 +4,40 @@ import { restoreCard } from "../api/cards";
 import { deleteCard } from "../api/cards";
 import type { Card } from "../types";
 
-export function useArchive() {
+type ArchiveMode = "all" | "recent";
+
+export function useArchive(mode: ArchiveMode = "all") {
   const [items, setItems] = useState<Card[]>([]);
   const [total, setTotal] = useState(0);
+  const [recentCount, setRecentCount] = useState(0);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
+  const RECENT_LIMIT = 20;
+
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await fetchArchive(page, search || undefined);
+      const recentLimit = mode === "recent" ? RECENT_LIMIT : undefined;
+      const data = await fetchArchive(page, search || undefined, recentLimit);
       setItems((prev) => (page === 1 ? data.items : [...prev, ...data.items]));
       setTotal(data.total);
+
+      // For recent mode, the count is the number of items returned (up to limit)
+      if (mode === "recent") {
+        setRecentCount(data.items.length);
+      }
     } finally {
       setLoading(false);
     }
-  }, [page, search]);
+  }, [page, search, mode]);
+
+  useEffect(() => {
+    // Reset page when mode changes
+    setPage(1);
+    setItems([]);
+  }, [mode]);
 
   useEffect(() => {
     load();
@@ -65,8 +82,9 @@ export function useArchive() {
   return {
     items,
     total,
+    recentCount,
     loading,
-    hasMore: items.length < total,
+    hasMore: mode === "all" && items.length < total,
     searchArchive,
     loadMore,
     restore,

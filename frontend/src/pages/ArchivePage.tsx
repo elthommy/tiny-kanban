@@ -4,9 +4,14 @@ import { ConfirmDialog } from "../components/shared/ConfirmDialog";
 import { TagBadge } from "../components/shared/TagBadge";
 
 export function ArchivePage() {
+  const [searchInput, setSearchInput] = useState("");
+  const [confirmClear, setConfirmClear] = useState(false);
+  const [tab, setTab] = useState<"all" | "recent">("all");
+
   const {
     items,
     total,
+    recentCount,
     loading,
     hasMore,
     searchArchive,
@@ -15,20 +20,7 @@ export function ArchivePage() {
     remove,
     restoreAllCards,
     clearAll,
-  } = useArchive();
-
-  const [searchInput, setSearchInput] = useState("");
-  const [confirmClear, setConfirmClear] = useState(false);
-  const [tab, setTab] = useState<"all" | "recent">("all");
-
-  const displayItems =
-    tab === "recent"
-      ? items.slice().sort((a, b) => {
-          const da = a.archived_at ? new Date(a.archived_at).getTime() : 0;
-          const db = b.archived_at ? new Date(b.archived_at).getTime() : 0;
-          return db - da;
-        })
-      : items;
+  } = useArchive(tab);
 
   return (
     <div className="bg-background-light flex-1 overflow-y-auto">
@@ -85,6 +77,11 @@ export function ArchivePage() {
               }`}
             >
               Recently Added
+              {tab === "recent" && recentCount > 0 && (
+                <span className="bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[10px]">
+                  {recentCount}
+                </span>
+              )}
             </button>
           </div>
           <div className="pb-3">
@@ -105,19 +102,19 @@ export function ArchivePage() {
           </div>
         </div>
 
-        {displayItems.length === 0 && !loading && (
+        {items.length === 0 && !loading && (
           <div className="py-20 text-center">
             <span className="material-symbols-outlined mb-4 text-[48px] text-slate-300">
               inventory_2
             </span>
             <p className="text-lg font-semibold text-[#4c739a]">
-              No archived tasks
+              {tab === "recent" ? "No recently archived tasks" : "No archived tasks"}
             </p>
           </div>
         )}
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {displayItems.map((card) => (
+          {items.map((card) => (
             <div
               key={card.id}
               className="flex flex-col gap-5 rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"

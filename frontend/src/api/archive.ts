@@ -3,9 +3,11 @@ import type { ArchivePage, Card } from "../types";
 export async function fetchArchive(
   page: number = 1,
   q?: string,
+  recentLimit?: number,
 ): Promise<ArchivePage> {
   const params = new URLSearchParams({ page: String(page) });
   if (q) params.set("q", q);
+  if (recentLimit) params.set("recent_limit", String(recentLimit));
   const res = await fetch(`/api/archive?${params}`);
   if (!res.ok) throw new Error("Failed to fetch archive");
   return res.json();
