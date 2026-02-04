@@ -108,7 +108,9 @@ export function ArchivePage() {
               inventory_2
             </span>
             <p className="text-lg font-semibold text-[#4c739a]">
-              {tab === "recent" ? "No recently archived tasks" : "No archived tasks"}
+              {tab === "recent"
+                ? "No recently archived tasks"
+                : "No archived tasks"}
             </p>
           </div>
         )}
