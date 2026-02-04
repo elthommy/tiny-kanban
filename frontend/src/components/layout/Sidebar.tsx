@@ -14,7 +14,7 @@ export function Sidebar() {
           </svg>
         </div>
         <h2 className="text-xl font-bold tracking-tight text-[#0d141b]">
-          TaskFlow
+          tiny-kanban
         </h2>
       </div>
       <nav className="flex-1 space-y-1 px-3">
@@ -48,21 +48,6 @@ export function Sidebar() {
           <span>Archived Tasks</span>
         </NavLink>
       </nav>
-      <div className="mt-auto border-t border-[#e7edf3] p-4">
-        <div className="flex items-center gap-3 p-2">
-          <div className="bg-primary/10 text-primary flex size-9 items-center justify-center rounded-full border border-slate-200 text-sm font-bold">
-            AM
-          </div>
-          <div className="flex flex-col">
-            <span className="max-w-[120px] truncate text-sm font-semibold">
-              Alex Morgan
-            </span>
-            <span className="text-[10px] font-bold text-[#4c739a] uppercase">
-              Admin
-            </span>
-          </div>
-        </div>
-      </div>
     </aside>
   );
 }
