@@ -10,7 +10,7 @@ describe("Sidebar", () => {
         <Sidebar />
       </MemoryRouter>,
     );
-    expect(screen.getByText("TaskFlow")).toBeInTheDocument();
+    expect(screen.getByText("tiny-kanban")).toBeInTheDocument();
     expect(screen.getByText("Current Board")).toBeInTheDocument();
     expect(screen.getByText("Archived Tasks")).toBeInTheDocument();
   });

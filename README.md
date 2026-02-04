@@ -1,6 +1,26 @@
-# TaskFlow Kanban Board
+# tiny-kanban Kanban Board
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A full-stack Kanban board application with a Python/FastAPI backend and a React/TypeScript frontend, styled to match Google Stitch designs.
+
+![Screenshot](./doc/screenshots/tiny-kanban_dashboard.png)
+![Screenshot](./doc/screenshots/tiny-kanban_archived_tasks.png)
+
+
+## ⚠️ Disclaimer
+
+**This is a personal learning project** created for educational purposes and to experiment with AI-assisted development. It was built to:
+- Explore full-stack development patterns
+- Learn new technologies and frameworks
+- Test AI development tools and workflows
+
+**Use at your own risk.** While functional, this project is not intended for production use without proper review, testing, and security hardening. See the [LICENSE](LICENSE) for full terms.
+
+## Development
+
+This project was developed with assistance from Claude (Anthropic's AI assistant).
+
 
 ## Tech Stack
 
@@ -44,7 +64,7 @@ source .venv/bin/activate
 pip install -e ".[dev]"
 ```
 
-Seed the database with demo data:
+[Optional] Seed the database with demo data:
 
 ```bash
 python -m app.seed
@@ -120,3 +140,7 @@ All endpoints are under the `/api` prefix.
 - Tag management with color-coded badges
 - Paginated archive with search
 - Debounced board search
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

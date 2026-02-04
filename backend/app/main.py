@@ -15,7 +15,7 @@ async def lifespan(app: FastAPI):
     yield
 
 
-app = FastAPI(title="TaskFlow API", lifespan=lifespan)
+app = FastAPI(title="tiny-kanban API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
