@@ -28,6 +28,11 @@ dev = [
 Homepage = "https://github.com/elthommy/tiny-kanban"
 Repository = "https://github.com/elthommy/tiny-kanban"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = ["alembic*", "tests*"]
+
 [tool.black]
 line-length = 88
 target-version = ["py312"]
