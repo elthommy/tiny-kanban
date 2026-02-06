@@ -112,7 +112,7 @@ export function CardEditModal({
               ))}
               <button
                 onClick={() => setShowTagCreateDialog(true)}
-                className="flex items-center gap-1 rounded-md border-2 border-dashed border-slate-300 bg-slate-50 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase text-slate-500 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+                className="flex items-center gap-1 rounded-md border-2 border-dashed border-slate-300 bg-slate-50 px-2 py-0.5 text-[10px] font-bold tracking-wider text-slate-500 uppercase transition-colors hover:border-slate-400 hover:bg-slate-100 hover:text-slate-600"
               >
                 <span className="material-symbols-outlined text-[14px]">
                   add
