@@ -1,3 +1,5 @@
+import os
+
 from pydantic_settings import BaseSettings
 
 
@@ -6,4 +8,8 @@ class Settings(BaseSettings):
     cors_origins: list[str] = ["http://localhost:5173"]
 
 
-settings = Settings()
+# Allow SEED_DB environment variable to override database for seeding
+if seed_db := os.getenv("SEED_DB"):
+    settings = Settings(database_url=f"sqlite+aiosqlite:///./{seed_db}")
+else:
+    settings = Settings()
