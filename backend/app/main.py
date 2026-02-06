@@ -16,8 +16,7 @@ def run_migrations():
     alembic_cfg = Config("alembic.ini")
     # Override database URL from settings
     alembic_cfg.set_main_option(
-        "sqlalchemy.url",
-        settings.database_url.replace("sqlite+aiosqlite:", "sqlite:")
+        "sqlalchemy.url", settings.database_url.replace("sqlite+aiosqlite:", "sqlite:")
     )
     command.upgrade(alembic_cfg, "head")
 
