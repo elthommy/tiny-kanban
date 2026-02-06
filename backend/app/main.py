@@ -1,17 +1,33 @@
+import asyncio
+import os
 from contextlib import asynccontextmanager
 
+from alembic import command
+from alembic.config import Config
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.database import Base, engine
-from app.routers import archive, cards, columns, search, tags
+from app.routers import archive, board_settings, cards, columns, search, tags
+
+
+def run_migrations():
+    """Run Alembic migrations programmatically."""
+    alembic_cfg = Config("alembic.ini")
+    # Override database URL from settings
+    alembic_cfg.set_main_option(
+        "sqlalchemy.url",
+        settings.database_url.replace("sqlite+aiosqlite:", "sqlite:")
+    )
+    command.upgrade(alembic_cfg, "head")
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    # Auto-run migrations in development (controlled by environment variable)
+    if os.getenv("AUTO_MIGRATE", "true").lower() == "true":
+        await asyncio.to_thread(run_migrations)
+
     yield
 
 
@@ -30,3 +46,4 @@ app.include_router(cards.router, prefix="/api")
 app.include_router(tags.router, prefix="/api")
 app.include_router(archive.router, prefix="/api")
 app.include_router(search.router, prefix="/api")
+app.include_router(board_settings.router, prefix="/api")
