@@ -66,6 +66,8 @@ class Tag(Base):
     id: Mapped[str] = mapped_column(String, primary_key=True, default=_uuid)
     name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
     color: Mapped[str] = mapped_column(String(50), nullable=False, default="blue")
+    bg_color: Mapped[str | None] = mapped_column(String(7), nullable=True)
+    fg_color: Mapped[str | None] = mapped_column(String(7), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
 
     cards: Mapped[list["Card"]] = relationship(
@@ -83,3 +85,19 @@ class CardTag(Base):
     tag_id: Mapped[str] = mapped_column(
         String, ForeignKey("tags.id", ondelete="CASCADE"), primary_key=True
     )
+
+
+class BoardSettings(Base):
+    __tablename__ = "board_settings"
+
+    id: Mapped[str] = mapped_column(String, primary_key=True, default=_uuid)
+    title: Mapped[str] = mapped_column(
+        String(255), nullable=False, default="Development Pipeline"
+    )
+    subtitle: Mapped[str] = mapped_column(
+        String(500),
+        nullable=False,
+        default="Manage your team's current tasks and sprint progress.",
+    )
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
+    updated_at: Mapped[datetime] = mapped_column(DateTime, default=_now, onupdate=_now)

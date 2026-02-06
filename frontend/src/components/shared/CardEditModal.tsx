@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Card, Tag } from "../../types";
 import { TagBadge } from "./TagBadge";
+import { TagCreateDialog } from "./TagCreateDialog";
+import { createTag } from "../../api/tags";
 
 interface CardEditModalProps {
   card: Card;
@@ -12,6 +14,7 @@ interface CardEditModalProps {
   }) => void;
   onDelete: () => void;
   onClose: () => void;
+  onTagsChange: () => void;
 }
 
 export function CardEditModal({
@@ -20,12 +23,14 @@ export function CardEditModal({
   onSave,
   onDelete,
   onClose,
+  onTagsChange,
 }: CardEditModalProps) {
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description ?? "");
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(
     card.tags.map((t) => t.id),
   );
+  const [showTagCreateDialog, setShowTagCreateDialog] = useState(false);
 
   const toggleTag = (tagId: string) => {
     setSelectedTagIds((prev) =>
@@ -33,6 +38,21 @@ export function CardEditModal({
         ? prev.filter((id) => id !== tagId)
         : [...prev, tagId],
     );
+  };
+
+  const handleCreateTag = async (data: {
+    name: string;
+    bg_color: string;
+    fg_color: string;
+  }) => {
+    try {
+      const newTag = await createTag(data);
+      setSelectedTagIds((prev) => [...prev, newTag.id]);
+      setShowTagCreateDialog(false);
+      onTagsChange();
+    } catch (error) {
+      console.error("Failed to create tag:", error);
+    }
   };
 
   return (
@@ -90,6 +110,15 @@ export function CardEditModal({
                   <TagBadge tag={tag} />
                 </button>
               ))}
+              <button
+                onClick={() => setShowTagCreateDialog(true)}
+                className="flex items-center gap-1 rounded-md border-2 border-dashed border-slate-300 bg-slate-50 px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase text-slate-500 hover:border-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+              >
+                <span className="material-symbols-outlined text-[14px]">
+                  add
+                </span>
+                NEW TAG
+              </button>
             </div>
           </div>
         </div>
@@ -123,6 +152,12 @@ export function CardEditModal({
           </div>
         </div>
       </div>
+      {showTagCreateDialog && (
+        <TagCreateDialog
+          onSave={handleCreateTag}
+          onClose={() => setShowTagCreateDialog(false)}
+        />
+      )}
     </div>
   );
 }

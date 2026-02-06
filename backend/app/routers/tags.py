@@ -20,7 +20,12 @@ async def create_tag(data: TagCreate, db: AsyncSession = Depends(get_db)):
     existing = await db.execute(select(Tag).where(Tag.name == data.name))
     if existing.scalar_one_or_none():
         raise HTTPException(409, "Tag with this name already exists")
-    tag = Tag(name=data.name, color=data.color)
+    tag = Tag(
+        name=data.name,
+        color=data.color,
+        bg_color=data.bg_color,
+        fg_color=data.fg_color,
+    )
     db.add(tag)
     await db.commit()
     await db.refresh(tag)

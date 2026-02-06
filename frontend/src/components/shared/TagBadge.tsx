@@ -13,6 +13,21 @@ const colorMap: Record<string, string> = {
 };
 
 export function TagBadge({ tag }: { tag: Tag }) {
+  // Use custom colors if available, otherwise fall back to predefined colors
+  if (tag.bg_color && tag.fg_color) {
+    return (
+      <span
+        className="rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase"
+        style={{
+          backgroundColor: tag.bg_color,
+          color: tag.fg_color,
+        }}
+      >
+        {tag.name}
+      </span>
+    );
+  }
+
   const colors = colorMap[tag.color] ?? colorMap.blue;
   return (
     <span

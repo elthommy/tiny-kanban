@@ -2,6 +2,8 @@ export interface Tag {
   id: string;
   name: string;
   color: string;
+  bg_color: string | null;
+  fg_color: string | null;
   created_at: string;
 }
 
@@ -34,4 +36,12 @@ export interface ArchivePage {
   total: number;
   page: number;
   page_size: number;
+}
+
+export interface BoardSettings {
+  id: string;
+  title: string;
+  subtitle: string;
+  created_at: string;
+  updated_at: string;
 }
