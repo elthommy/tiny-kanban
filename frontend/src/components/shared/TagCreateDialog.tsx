@@ -76,7 +76,7 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
                   type="text"
                   value={bgColor}
                   onChange={(e) => setBgColor(e.target.value)}
-                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 text-xs font-mono focus:ring-2 focus:outline-none"
+                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 font-mono text-xs focus:ring-2 focus:outline-none"
                 />
               </div>
             </div>
@@ -96,7 +96,7 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
                   type="text"
                   value={fgColor}
                   onChange={(e) => setFgColor(e.target.value)}
-                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 text-xs font-mono focus:ring-2 focus:outline-none"
+                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 font-mono text-xs focus:ring-2 focus:outline-none"
                 />
               </div>
             </div>
@@ -113,7 +113,7 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
           <button
             onClick={handleSave}
             disabled={!name.trim()}
-            className="bg-primary rounded-lg px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-primary rounded-lg px-4 py-2 text-sm font-bold text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Create Tag
           </button>

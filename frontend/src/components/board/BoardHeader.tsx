@@ -11,7 +11,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
   const [query, setQuery] = useState("");
   const [title, setTitle] = useState("Development Pipeline");
   const [subtitle, setSubtitle] = useState(
-    "Manage your team's current tasks and sprint progress."
+    "Manage your team's current tasks and sprint progress.",
   );
   const [editingTitle, setEditingTitle] = useState(false);
   const [editingSubtitle, setEditingSubtitle] = useState(false);
@@ -85,7 +85,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
                 if (e.key === "Enter") saveTitleEdit();
                 if (e.key === "Escape") cancelTitleEdit();
               }}
-              className="focus:ring-primary/20 text-2xl font-bold text-[#0d141b] rounded-lg border border-slate-200 px-3 py-1 focus:ring-2 focus:outline-none"
+              className="focus:ring-primary/20 rounded-lg border border-slate-200 px-3 py-1 text-2xl font-bold text-[#0d141b] focus:ring-2 focus:outline-none"
               autoFocus
             />
             <button
@@ -108,7 +108,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
         ) : (
           <h1
             onClick={handleTitleEdit}
-            className="group text-2xl font-bold text-[#0d141b] cursor-pointer hover:bg-slate-50 rounded px-2 py-1 -ml-2 inline-flex items-center gap-2"
+            className="group -ml-2 inline-flex cursor-pointer items-center gap-2 rounded px-2 py-1 text-2xl font-bold text-[#0d141b] hover:bg-slate-50"
           >
             {title}
             <span className="material-symbols-outlined text-[20px] opacity-0 group-hover:opacity-50">
@@ -117,7 +117,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
           </h1>
         )}
         {editingSubtitle ? (
-          <div className="flex items-center gap-2 mt-1">
+          <div className="mt-1 flex items-center gap-2">
             <input
               value={tempSubtitle}
               onChange={(e) => setTempSubtitle(e.target.value)}
@@ -125,7 +125,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
                 if (e.key === "Enter") saveSubtitleEdit();
                 if (e.key === "Escape") cancelSubtitleEdit();
               }}
-              className="focus:ring-primary/20 text-sm text-[#4c739a] rounded-lg border border-slate-200 px-3 py-1 focus:ring-2 focus:outline-none"
+              className="focus:ring-primary/20 rounded-lg border border-slate-200 px-3 py-1 text-sm text-[#4c739a] focus:ring-2 focus:outline-none"
               autoFocus
             />
             <button
@@ -148,7 +148,7 @@ export function BoardHeader({ onSearchResults }: BoardHeaderProps) {
         ) : (
           <p
             onClick={handleSubtitleEdit}
-            className="group mt-1 text-sm text-[#4c739a] cursor-pointer hover:bg-slate-50 rounded px-2 py-1 -ml-2 inline-flex items-center gap-2"
+            className="group mt-1 -ml-2 inline-flex cursor-pointer items-center gap-2 rounded px-2 py-1 text-sm text-[#4c739a] hover:bg-slate-50"
           >
             {subtitle}
             <span className="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-50">
