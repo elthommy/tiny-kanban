@@ -1,9 +1,39 @@
-"""Seed the database with demo data. Run with: python -m app.seed"""
+"""Seed the database with demo data.
+
+⚠️  WARNING: This will DELETE ALL EXISTING DATA! ⚠️
+
+Usage:
+  python -m app.seed                    # Use production database (prompts for confirmation)
+  python -m app.seed --force            # Skip confirmation (DANGEROUS!)
+  SEED_DB=seed.db python -m app.seed    # Use a different database file
+
+For safety, consider using a separate database:
+  SEED_DB=demo.db python -m app.seed --force
+"""
 
 import asyncio
+import os
+import sys
 
 from app.database import Base, async_session, engine
 from app.models import Card, CardTag, Column, Tag
+
+
+def confirm_seed():
+    """Ask user for confirmation before seeding."""
+    if "--force" in sys.argv:
+        return True
+
+    db_path = os.getenv("DATABASE_URL", "sqlite+aiosqlite:///./taskflow.db")
+    db_file = db_path.split("///")[-1] if "///" in db_path else "in-memory"
+
+    print("⚠️  WARNING: DESTRUCTIVE OPERATION ⚠️")
+    print(f"This will DELETE ALL DATA in: {db_file}")
+    print("\nTo use a separate database instead:")
+    print("  SEED_DB=demo.db python -m app.seed --force\n")
+
+    response = input("Are you sure you want to continue? Type 'yes' to confirm: ")
+    return response.lower() == "yes"
 
 
 async def seed():
@@ -130,4 +160,8 @@ async def seed():
 
 
 if __name__ == "__main__":
+    if not confirm_seed():
+        print("❌ Seeding cancelled.")
+        sys.exit(0)
+
     asyncio.run(seed())
