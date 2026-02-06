@@ -8,12 +8,16 @@ from pydantic import BaseModel
 class TagCreate(BaseModel):
     name: str
     color: str = "blue"
+    bg_color: str | None = None
+    fg_color: str | None = None
 
 
 class TagOut(BaseModel):
     id: str
     name: str
     color: str
+    bg_color: str | None
+    fg_color: str | None
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -101,3 +105,21 @@ class ArchivePage(BaseModel):
     total: int
     page: int
     page_size: int
+
+
+# --- Board Settings ---
+
+
+class BoardSettingsUpdate(BaseModel):
+    title: str | None = None
+    subtitle: str | None = None
+
+
+class BoardSettingsOut(BaseModel):
+    id: str
+    title: str
+    subtitle: str
+    created_at: datetime
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}

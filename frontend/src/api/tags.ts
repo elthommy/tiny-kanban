@@ -6,11 +6,16 @@ export async function fetchTags(): Promise<Tag[]> {
   return res.json();
 }
 
-export async function createTag(name: string, color: string): Promise<Tag> {
+export async function createTag(data: {
+  name: string;
+  color?: string;
+  bg_color?: string;
+  fg_color?: string;
+}): Promise<Tag> {
   const res = await fetch("/api/tags", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, color }),
+    body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error("Failed to create tag");
   return res.json();

@@ -20,7 +20,7 @@ export function BoardPage() {
     moveCardTo,
     reload,
   } = useColumns();
-  const { tags } = useTags();
+  const { tags, reload: reloadTags } = useTags();
 
   const [editingCard, setEditingCard] = useState<Card | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
@@ -74,6 +74,7 @@ export function BoardPage() {
             setEditingCard(null);
           }}
           onClose={() => setEditingCard(null)}
+          onTagsChange={reloadTags}
         />
       )}
 
