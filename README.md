@@ -20,11 +20,12 @@ A full-stack Kanban board application with a Python/FastAPI backend and a React/
 ## Development
 
 This project was developed with assistance from Claude (Anthropic's AI assistant).
+The stitch were made with Google Stitch.
 
 
 ## Tech Stack
 
-**Backend:** Python 3.12+, FastAPI, SQLAlchemy 2.0 (async), SQLite, Pydantic v2
+**Backend:** Python 3.12+, FastAPI, SQLAlchemy 2.0 (async), Alembic, SQLite, Pydantic v2
 
 **Frontend:** React 18, TypeScript, Vite, Tailwind CSS 4, @dnd-kit, React Router 6
 
@@ -54,6 +55,43 @@ simple_kanban/
 ```
 
 ## Getting Started
+
+### Database Setup
+
+This project uses Alembic for database migrations.
+
+**First Time Setup:**
+
+```bash
+cd backend
+source .venv/bin/activate
+pip install -e ".[dev]"
+alembic upgrade head  # Create database tables
+```
+
+**⚠️ Warning about seed script**: The seed script deletes all existing data! For demo data, use a separate database:
+```bash
+SEED_DB=demo.db python -m app.seed --force
+```
+See `backend/DATABASE_SAFETY.md` for details.
+
+**Development:**
+
+Migrations run automatically on app startup. To disable:
+```bash
+AUTO_MIGRATE=false uvicorn app.main:app --reload
+```
+
+**Creating Migrations:**
+
+After modifying `app/models.py`:
+```bash
+source .venv/bin/activate
+alembic revision --autogenerate -m "your_description"
+alembic upgrade head
+```
+
+See `backend/alembic/README.md` for detailed migration documentation.
 
 ### Backend
 
