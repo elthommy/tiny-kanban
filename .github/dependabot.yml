@@ -18,6 +18,14 @@ updates:
     commit-message:
       prefix: "npm"
       include: "scope"
+    # Ignore ESLint 10.x until eslint-plugin-react-hooks supports it
+    ignore:
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+        versions: ["10.x"]
+      - dependency-name: "@eslint/js"
+        update-types: ["version-update:semver-major"]
+        versions: ["10.x"]
     # Group minor and patch updates together
     groups:
       development-dependencies:
