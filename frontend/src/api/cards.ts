@@ -2,7 +2,7 @@ import type { Card } from "../types";
 
 export async function createCard(
   columnId: string,
-  data: { title: string; description?: string; tag_ids?: string[] },
+  data: { title: string; description?: string; due_date?: string; tag_ids?: string[] },
 ): Promise<Card> {
   const res = await fetch(`/api/columns/${columnId}/cards`, {
     method: "POST",
@@ -19,6 +19,7 @@ export async function updateCard(
     title?: string;
     description?: string;
     image_url?: string;
+    due_date?: string | null;
     tag_ids?: string[];
   },
 ): Promise<Card> {
