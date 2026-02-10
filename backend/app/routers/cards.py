@@ -32,6 +32,7 @@ async def create_card(
         title=data.title,
         description=data.description,
         image_url=data.image_url,
+        due_date=data.due_date,
         position=max_pos,
     )
     db.add(card)
@@ -65,6 +66,8 @@ async def update_card(
         card.description = data.description
     if data.image_url is not None:
         card.image_url = data.image_url
+    if data.due_date is not None:
+        card.due_date = data.due_date
     card.updated_at = datetime.now(timezone.utc)
 
     if data.tag_ids is not None:

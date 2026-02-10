@@ -16,6 +16,7 @@ export interface Card {
   position: number;
   is_archived: boolean;
   archived_at: string | null;
+  due_date: string | null;
   created_at: string;
   updated_at: string;
   tags: Tag[];

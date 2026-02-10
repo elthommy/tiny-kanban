@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { Card, Tag } from "../../types";
 import { TagBadge } from "./TagBadge";
 import { TagCreateDialog } from "./TagCreateDialog";
-import { createTag } from "../../api/tags";
+import { createTag, deleteTag } from "../../api/tags";
 
 interface CardEditModalProps {
   card: Card;
@@ -10,6 +10,7 @@ interface CardEditModalProps {
   onSave: (data: {
     title: string;
     description: string;
+    due_date?: string | null;
     tag_ids: string[];
   }) => void;
   onDelete: () => void;
@@ -27,6 +28,7 @@ export function CardEditModal({
 }: CardEditModalProps) {
   const [title, setTitle] = useState(card.title);
   const [description, setDescription] = useState(card.description ?? "");
+  const [dueDate, setDueDate] = useState<string>(card.due_date ?? "");
   const [selectedTagIds, setSelectedTagIds] = useState<string[]>(
     card.tags.map((t) => t.id),
   );
@@ -52,6 +54,23 @@ export function CardEditModal({
       onTagsChange();
     } catch (error) {
       console.error("Failed to create tag:", error);
+    }
+  };
+
+  const handleDeleteTag = async (tagId: string, tagName: string) => {
+    if (
+      !confirm(
+        `Are you sure you want to delete the tag "${tagName}"? This will remove it from all cards.`,
+      )
+    ) {
+      return;
+    }
+    try {
+      await deleteTag(tagId);
+      setSelectedTagIds((prev) => prev.filter((id) => id !== tagId));
+      onTagsChange();
+    } catch (error) {
+      console.error("Failed to delete tag:", error);
     }
   };
 
@@ -93,22 +112,59 @@ export function CardEditModal({
           </div>
 
           <div>
+            <label className="mb-1 flex items-center justify-between text-sm font-semibold text-[#0d141b]">
+              <span>Due Date (Optional)</span>
+              {dueDate && (
+                <button
+                  type="button"
+                  onClick={() => setDueDate("")}
+                  className="text-xs text-slate-500 hover:text-slate-700"
+                >
+                  Clear
+                </button>
+              )}
+            </label>
+            <input
+              type="date"
+              value={dueDate}
+              onChange={(e) => setDueDate(e.target.value)}
+              className="focus:border-primary focus:ring-primary/20 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:ring-2 focus:outline-none"
+            />
+          </div>
+
+          <div>
             <label className="mb-2 block text-sm font-semibold text-[#0d141b]">
               Tags
             </label>
             <div className="flex flex-wrap gap-2">
               {allTags.map((tag) => (
-                <button
+                <div
                   key={tag.id}
-                  onClick={() => toggleTag(tag.id)}
-                  className={`transition-opacity ${
-                    selectedTagIds.includes(tag.id)
-                      ? "opacity-100"
-                      : "opacity-40"
-                  }`}
+                  className="group relative flex items-center gap-1"
                 >
-                  <TagBadge tag={tag} />
-                </button>
+                  <button
+                    onClick={() => toggleTag(tag.id)}
+                    className={`transition-opacity ${
+                      selectedTagIds.includes(tag.id)
+                        ? "opacity-100"
+                        : "opacity-40"
+                    }`}
+                  >
+                    <TagBadge tag={tag} />
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDeleteTag(tag.id, tag.name);
+                    }}
+                    className="flex h-4 w-4 items-center justify-center rounded-full bg-slate-200 text-slate-600 opacity-0 transition-opacity hover:bg-red-100 hover:text-red-600 group-hover:opacity-100"
+                    title={`Delete tag "${tag.name}"`}
+                  >
+                    <span className="material-symbols-outlined text-[12px]">
+                      close
+                    </span>
+                  </button>
+                </div>
               ))}
               <button
                 onClick={() => setShowTagCreateDialog(true)}
@@ -142,6 +198,7 @@ export function CardEditModal({
                 onSave({
                   title,
                   description,
+                  due_date: dueDate || null,
                   tag_ids: selectedTagIds,
                 })
               }

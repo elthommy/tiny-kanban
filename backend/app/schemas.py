@@ -30,6 +30,7 @@ class CardCreate(BaseModel):
     title: str
     description: str | None = None
     image_url: str | None = None
+    due_date: datetime | None = None
     tag_ids: list[str] = []
 
 
@@ -37,6 +38,7 @@ class CardUpdate(BaseModel):
     title: str | None = None
     description: str | None = None
     image_url: str | None = None
+    due_date: datetime | None = None
     tag_ids: list[str] | None = None
 
 
@@ -49,6 +51,7 @@ class CardOut(BaseModel):
     position: int
     is_archived: bool
     archived_at: datetime | None
+    due_date: datetime | None
     created_at: datetime
     updated_at: datetime
     tags: list[TagOut] = []
