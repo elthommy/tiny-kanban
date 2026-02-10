@@ -2,7 +2,11 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { Card, Tag } from "../../types";
 import { TagBadge } from "../shared/TagBadge";
-import { getDueDateStatus, formatDueDate, dueDateStyles } from "../../utils/dateUtils";
+import {
+  getDueDateStatus,
+  formatDueDate,
+  dueDateStyles,
+} from "../../utils/dateUtils";
 
 interface KanbanCardProps {
   card: Card;
@@ -69,14 +73,18 @@ export function KanbanCard({
           ) : card.due_date ? (
             (() => {
               const status = getDueDateStatus(card.due_date);
-              if (status === 'none') return null;
+              if (status === "none") return null;
               const styles = dueDateStyles[status];
               return (
-                <div className={`flex items-center gap-1.5 ${styles.textColor}`}>
-                  <span className="material-symbols-outlined text-[16px]">{styles.icon}</span>
+                <div
+                  className={`flex items-center gap-1.5 ${styles.textColor}`}
+                >
+                  <span className="material-symbols-outlined text-[16px]">
+                    {styles.icon}
+                  </span>
                   <p className="text-xs font-medium">
-                    {status === 'overdue' && 'Overdue: '}
-                    {status === 'soon' && 'Due: '}
+                    {status === "overdue" && "Overdue: "}
+                    {status === "soon" && "Due: "}
                     {formatDueDate(card.due_date)}
                   </p>
                 </div>

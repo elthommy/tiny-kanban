@@ -2,7 +2,12 @@ import type { Card } from "../types";
 
 export async function createCard(
   columnId: string,
-  data: { title: string; description?: string; due_date?: string; tag_ids?: string[] },
+  data: {
+    title: string;
+    description?: string;
+    due_date?: string;
+    tag_ids?: string[];
+  },
 ): Promise<Card> {
   const res = await fetch(`/api/columns/${columnId}/cards`, {
     method: "POST",

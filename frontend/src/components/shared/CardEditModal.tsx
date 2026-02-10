@@ -157,7 +157,7 @@ export function CardEditModal({
                       e.stopPropagation();
                       handleDeleteTag(tag.id, tag.name);
                     }}
-                    className="flex h-4 w-4 items-center justify-center rounded-full bg-slate-200 text-slate-600 opacity-0 transition-opacity hover:bg-red-100 hover:text-red-600 group-hover:opacity-100"
+                    className="flex h-4 w-4 items-center justify-center rounded-full bg-slate-200 text-slate-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-100 hover:text-red-600"
                     title={`Delete tag "${tag.name}"`}
                   >
                     <span className="material-symbols-outlined text-[12px]">
