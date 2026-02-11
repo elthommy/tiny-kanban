@@ -46,3 +46,14 @@ app.include_router(tags.router, prefix="/api")
 app.include_router(archive.router, prefix="/api")
 app.include_router(search.router, prefix="/api")
 app.include_router(board_settings.router, prefix="/api")
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(
+        "app.main:app",
+        host="0.0.0.0",
+        port=settings.backend_port,
+        reload=True,
+    )

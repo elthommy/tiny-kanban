@@ -93,6 +93,26 @@ alembic upgrade head
 
 See `backend/alembic/README.md` for detailed migration documentation.
 
+### Environment Variables
+
+Both backend and frontend support configurable ports via environment variables:
+
+**Backend** (`backend/.env`):
+- `BACKEND_PORT`: Backend server port (default: 8000)
+- `FRONTEND_PORT`: Frontend port for CORS configuration (default: 5173)
+- `DATABASE_URL`: Database connection string (default: sqlite+aiosqlite:///./taskflow.db)
+- `AUTO_MIGRATE`: Auto-run migrations on startup (default: true)
+
+**Frontend** (`frontend/.env`):
+- `BACKEND_PORT`: Backend API port for proxy configuration (default: 8000)
+- `FRONTEND_PORT`: Frontend dev server port (default: 5173)
+
+Copy the example files to get started:
+```bash
+cp backend/.env.example backend/.env
+cp frontend/.env.example frontend/.env
+```
+
 ### Backend
 
 ```bash
@@ -111,7 +131,11 @@ python -m app.seed
 Start the development server:
 
 ```bash
+# Using uvicorn directly (uses default port 8000)
 uvicorn app.main:app --reload
+
+# Or use python to run with environment variables
+python -m app.main
 ```
 
 The API is available at `http://localhost:8000` with interactive docs at `/docs`.
