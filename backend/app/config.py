@@ -5,7 +5,12 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     database_url: str = "sqlite+aiosqlite:///./taskflow.db"
-    cors_origins: list[str] = ["http://localhost:5173"]
+    backend_port: int = 8000
+    frontend_port: int = 5173
+
+    @property
+    def cors_origins(self) -> list[str]:
+        return [f"http://localhost:{self.frontend_port}"]
 
 
 # Allow SEED_DB environment variable to override database for seeding
