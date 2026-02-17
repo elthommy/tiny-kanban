@@ -12,6 +12,10 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), tailwindcss()],
+    define: {
+      __BACKEND_PORT__: JSON.stringify(backendPort),
+      __FRONTEND_PORT__: JSON.stringify(String(frontendPort)),
+    },
     server: {
       port: frontendPort,
       proxy: {
