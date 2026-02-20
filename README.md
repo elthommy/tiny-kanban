@@ -133,7 +133,7 @@ Dependabot updates these lock files automatically via weekly PRs.
 
 **Sync your `.venv` to the lock file:**
 ```bash
-uv pip sync backend/requirements-dev.txt
+cd backend && uv pip sync ./requirements-dev.txt
 ```
 
 **Regenerate lock files** (after changing `pyproject.toml`):
