@@ -23,7 +23,7 @@ click==8.3.1
     # via
     #   black
     #   uvicorn
-fastapi==0.129.0
+fastapi==0.129.1
     # via taskflow-backend (pyproject.toml)
 greenlet==3.3.2
     # via sqlalchemy
