@@ -8,8 +8,8 @@ updates:
     directory: "/frontend"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "21:00"
+      day: "saturday"
+      time: "15:00"
       timezone: "Europe/Paris"
     open-pull-requests-limit: 10
     labels:
@@ -44,8 +44,8 @@ updates:
     directory: "/backend"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "21:00"
+      day: "saturday"
+      time: "15:00"
       timezone: "Europe/Paris"
     open-pull-requests-limit: 10
     labels:
@@ -73,8 +73,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "21:00"
+      day: "saturday"
+      time: "15:00"
       timezone: "Europe/Paris"
     labels:
       - "dependencies"
