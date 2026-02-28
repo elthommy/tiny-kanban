@@ -14,7 +14,7 @@ anyio==4.12.1
     #   watchfiles
 click==8.3.1
     # via uvicorn
-fastapi==0.129.1
+fastapi==0.134.0
     # via taskflow-backend (pyproject.toml)
 greenlet==3.3.2
     # via sqlalchemy
@@ -33,7 +33,7 @@ pydantic==2.12.5
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.41.5
+pydantic-core==2.42.0
     # via pydantic
 pydantic-settings==2.13.1
     # via taskflow-backend (pyproject.toml)
@@ -43,7 +43,7 @@ python-dotenv==1.2.1
     #   uvicorn
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.0.46
+sqlalchemy==2.0.47
     # via
     #   taskflow-backend (pyproject.toml)
     #   alembic
