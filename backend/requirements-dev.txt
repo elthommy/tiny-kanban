@@ -15,7 +15,7 @@ anyio==4.12.1
     #   watchfiles
 black==26.1.0
     # via taskflow-backend (pyproject.toml)
-certifi==2026.1.4
+certifi==2026.2.25
     # via
     #   httpcore
     #   httpx
