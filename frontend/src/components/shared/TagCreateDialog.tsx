@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TAG_COLORS, getTextColor } from "../../constants/colors";
 
 interface TagCreateDialogProps {
   onSave: (data: { name: string; bg_color: string; fg_color: string }) => void;
@@ -7,8 +8,9 @@ interface TagCreateDialogProps {
 
 export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
   const [name, setName] = useState("");
-  const [bgColor, setBgColor] = useState("#93c5fd");
-  const [fgColor, setFgColor] = useState("#1e3a8a");
+  const [bgColor, setBgColor] = useState(TAG_COLORS[10].hex); // Blue default
+
+  const fgColor = getTextColor(bgColor);
 
   const handleSave = () => {
     if (name.trim()) {
@@ -21,10 +23,7 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-bold text-[#0d141b]">Create New Tag</h3>
-          <button
-            onClick={onClose}
-            className="text-[#4c739a] hover:text-[#0d141b]"
-          >
+          <button onClick={onClose} className="text-[#4c739a] hover:text-[#0d141b]">
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
@@ -50,55 +49,32 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
             <div className="flex items-center justify-center rounded-lg bg-slate-50 py-4">
               <span
                 className="rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase"
-                style={{
-                  backgroundColor: bgColor,
-                  color: fgColor,
-                }}
+                style={{ backgroundColor: bgColor, color: fgColor }}
               >
                 {name || "TAG PREVIEW"}
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="mb-1 block text-sm font-semibold text-[#0d141b]">
-                Background Color
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="h-10 w-16 cursor-pointer rounded border border-slate-200"
+          <div>
+            <label className="mb-2 block text-sm font-semibold text-[#0d141b]">
+              Color
+            </label>
+            <div className="grid grid-cols-8 gap-2">
+              {TAG_COLORS.map((c) => (
+                <button
+                  key={c.hex}
+                  type="button"
+                  title={c.name}
+                  onClick={() => setBgColor(c.hex)}
+                  className={`h-8 w-full rounded-md border-2 transition-transform hover:scale-110 ${
+                    bgColor === c.hex
+                      ? "border-[#0d141b] ring-2 ring-[#0d141b]/20"
+                      : "border-transparent"
+                  }`}
+                  style={{ backgroundColor: c.hex }}
                 />
-                <input
-                  type="text"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 font-mono text-xs focus:ring-2 focus:outline-none"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="mb-1 block text-sm font-semibold text-[#0d141b]">
-                Text Color
-              </label>
-              <div className="flex items-center gap-2">
-                <input
-                  type="color"
-                  value={fgColor}
-                  onChange={(e) => setFgColor(e.target.value)}
-                  className="h-10 w-16 cursor-pointer rounded border border-slate-200"
-                />
-                <input
-                  type="text"
-                  value={fgColor}
-                  onChange={(e) => setFgColor(e.target.value)}
-                  className="focus:border-primary focus:ring-primary/20 flex-1 rounded-lg border border-slate-200 px-2 py-1.5 font-mono text-xs focus:ring-2 focus:outline-none"
-                />
-              </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,9 +1,8 @@
 export interface Tag {
   id: string;
   name: string;
-  color: string;
-  bg_color: string | null;
-  fg_color: string | null;
+  bg_color: string;
+  fg_color: string;
   created_at: string;
 }
 

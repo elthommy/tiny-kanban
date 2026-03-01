@@ -7,17 +7,14 @@ from pydantic import BaseModel
 
 class TagCreate(BaseModel):
     name: str
-    color: str = "blue"
-    bg_color: str | None = None
-    fg_color: str | None = None
+    bg_color: str = "#3b82f6"
 
 
 class TagOut(BaseModel):
     id: str
     name: str
-    color: str
-    bg_color: str | None
-    fg_color: str | None
+    bg_color: str
+    fg_color: str
     created_at: datetime
 
     model_config = {"from_attributes": True}

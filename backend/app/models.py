@@ -66,9 +66,8 @@ class Tag(Base):
 
     id: Mapped[str] = mapped_column(String, primary_key=True, default=_uuid)
     name: Mapped[str] = mapped_column(String(100), unique=True, nullable=False)
-    color: Mapped[str] = mapped_column(String(50), nullable=False, default="blue")
-    bg_color: Mapped[str | None] = mapped_column(String(7), nullable=True)
-    fg_color: Mapped[str | None] = mapped_column(String(7), nullable=True)
+    bg_color: Mapped[str] = mapped_column(String(7), nullable=False, default="#3b82f6")
+    fg_color: Mapped[str] = mapped_column(String(7), nullable=False, default="#ffffff")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=_now)
 
     cards: Mapped[list["Card"]] = relationship(

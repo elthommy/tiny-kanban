@@ -8,9 +8,7 @@ export async function fetchTags(): Promise<Tag[]> {
 
 export async function createTag(data: {
   name: string;
-  color?: string;
-  bg_color?: string;
-  fg_color?: string;
+  bg_color: string;
 }): Promise<Tag> {
   const res = await fetch("/api/tags", {
     method: "POST",
