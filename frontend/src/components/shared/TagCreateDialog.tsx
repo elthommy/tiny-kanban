@@ -23,7 +23,10 @@ export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
       <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-bold text-[#0d141b]">Create New Tag</h3>
-          <button onClick={onClose} className="text-[#4c739a] hover:text-[#0d141b]">
+          <button
+            onClick={onClose}
+            className="text-[#4c739a] hover:text-[#0d141b]"
+          >
             <span className="material-symbols-outlined">close</span>
           </button>
         </div>
