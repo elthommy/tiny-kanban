@@ -5,15 +5,15 @@ Revises: dba094943a0c
 Create Date: 2026-03-01 00:00:00.000000
 
 """
+
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
 
-
 # revision identifiers, used by Alembic.
-revision: str = 'a1b2c3d4e5f6'
-down_revision: Union[str, Sequence[str], None] = 'dba094943a0c'
+revision: str = "a1b2c3d4e5f6"
+down_revision: Union[str, Sequence[str], None] = "dba094943a0c"
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -31,9 +31,22 @@ LEGACY_COLOR_MAP = {
 }
 
 PALETTE = [
-    "#ef4444", "#f97316", "#f59e0b", "#eab308", "#84cc16", "#22c55e",
-    "#10b981", "#14b8a6", "#06b6d4", "#0ea5e9", "#3b82f6", "#6366f1",
-    "#8b5cf6", "#a855f7", "#ec4899", "#64748b",
+    "#ef4444",
+    "#f97316",
+    "#f59e0b",
+    "#eab308",
+    "#84cc16",
+    "#22c55e",
+    "#10b981",
+    "#14b8a6",
+    "#06b6d4",
+    "#0ea5e9",
+    "#3b82f6",
+    "#6366f1",
+    "#8b5cf6",
+    "#a855f7",
+    "#ec4899",
+    "#64748b",
 ]
 
 
@@ -86,15 +99,24 @@ def upgrade() -> None:
     # Now alter the schema: drop color column, make bg/fg NOT NULL
     with op.batch_alter_table("tags") as batch_op:
         batch_op.drop_column("color")
-        batch_op.alter_column("bg_color", existing_type=sa.String(7), nullable=False,
-                              server_default="#3b82f6")
-        batch_op.alter_column("fg_color", existing_type=sa.String(7), nullable=False,
-                              server_default="#ffffff")
+        batch_op.alter_column(
+            "bg_color",
+            existing_type=sa.String(7),
+            nullable=False,
+            server_default="#3b82f6",
+        )
+        batch_op.alter_column(
+            "fg_color",
+            existing_type=sa.String(7),
+            nullable=False,
+            server_default="#ffffff",
+        )
 
 
 def downgrade() -> None:
     with op.batch_alter_table("tags") as batch_op:
-        batch_op.add_column(sa.Column("color", sa.String(50), nullable=False,
-                                      server_default="blue"))
+        batch_op.add_column(
+            sa.Column("color", sa.String(50), nullable=False, server_default="blue")
+        )
         batch_op.alter_column("bg_color", existing_type=sa.String(7), nullable=True)
         batch_op.alter_column("fg_color", existing_type=sa.String(7), nullable=True)

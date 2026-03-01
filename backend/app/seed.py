@@ -53,12 +53,33 @@ async def seed():
 
         # Tags
         tags = {
-            "high": Tag(id="tag-high", name="High Priority", bg_color="#ef4444", fg_color="#000000"),
-            "low": Tag(id="tag-low", name="Low Priority", bg_color="#22c55e", fg_color="#000000"),
-            "design": Tag(id="tag-design", name="Design", bg_color="#3b82f6", fg_color="#000000"),
-            "dev": Tag(id="tag-dev", name="Development", bg_color="#f59e0b", fg_color="#000000"),
-            "refactor": Tag(id="tag-refactor", name="Refactoring", bg_color="#a855f7", fg_color="#000000"),
-            "ops": Tag(id="tag-ops", name="Operations", bg_color="#64748b", fg_color="#ffffff"),
+            "high": Tag(
+                id="tag-high",
+                name="High Priority",
+                bg_color="#ef4444",
+                fg_color="#000000",
+            ),
+            "low": Tag(
+                id="tag-low",
+                name="Low Priority",
+                bg_color="#22c55e",
+                fg_color="#000000",
+            ),
+            "design": Tag(
+                id="tag-design", name="Design", bg_color="#3b82f6", fg_color="#000000"
+            ),
+            "dev": Tag(
+                id="tag-dev", name="Development", bg_color="#f59e0b", fg_color="#000000"
+            ),
+            "refactor": Tag(
+                id="tag-refactor",
+                name="Refactoring",
+                bg_color="#a855f7",
+                fg_color="#000000",
+            ),
+            "ops": Tag(
+                id="tag-ops", name="Operations", bg_color="#64748b", fg_color="#ffffff"
+            ),
         }
         db.add_all(tags.values())
 
