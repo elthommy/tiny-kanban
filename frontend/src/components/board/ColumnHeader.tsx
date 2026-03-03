@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { Column } from "../../types";
 
 interface ColumnHeaderProps {
@@ -21,6 +21,17 @@ export function ColumnHeader({
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(column.name);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   const cardCount = column.cards.length;
 
