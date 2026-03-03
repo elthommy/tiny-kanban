@@ -14,6 +14,7 @@ export function BoardPage() {
     addColumn,
     editColumn,
     removeColumn,
+    archiveAllCards,
     addCard,
     editCard,
     archiveCardById,
@@ -55,6 +56,7 @@ export function BoardPage() {
           editColumn(id, { is_done_column: isDone })
         }
         onDeleteColumn={removeColumn}
+        onArchiveAllCards={archiveAllCards}
         onAddCard={handleAddCard}
         onArchiveCard={archiveCardById}
         onEditCard={handleEditCard}

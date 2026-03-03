@@ -79,6 +79,21 @@ async def delete_column(column_id: str, db: AsyncSession = Depends(get_db)):
     await db.commit()
 
 
+@router.post("/columns/{column_id}/archive-cards", status_code=204)
+async def archive_all_cards(column_id: str, db: AsyncSession = Depends(get_db)):
+    result = await db.execute(select(Column).where(Column.id == column_id))
+    col = result.scalar_one_or_none()
+    if not col:
+        raise HTTPException(404, "Column not found")
+    now = datetime.now(timezone.utc)
+    await db.execute(
+        update(Card)
+        .where(Card.column_id == column_id, Card.is_archived == False)  # noqa: E712
+        .values(is_archived=True, archived_at=now)
+    )
+    await db.commit()
+
+
 @router.put("/columns/reorder", response_model=list[ColumnOut])
 async def reorder_columns(data: ColumnReorder, db: AsyncSession = Depends(get_db)):
     for i, col_id in enumerate(data.column_ids):

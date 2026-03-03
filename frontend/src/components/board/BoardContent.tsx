@@ -21,6 +21,7 @@ interface BoardContentProps {
   onRenameColumn: (id: string, name: string) => void;
   onToggleDoneColumn: (id: string, isDone: boolean) => void;
   onDeleteColumn: (id: string) => void;
+  onArchiveAllCards: (columnId: string) => void;
   onAddCard: (columnId: string, title: string) => void;
   onArchiveCard: (cardId: string) => void;
   onEditCard: (cardId: string) => void;
@@ -38,6 +39,7 @@ export function BoardContent({
   onRenameColumn,
   onToggleDoneColumn,
   onDeleteColumn,
+  onArchiveAllCards,
   onAddCard,
   onArchiveCard,
   onEditCard,
@@ -126,6 +128,7 @@ export function BoardContent({
                   onToggleDoneColumn(column.id, !column.is_done_column)
                 }
                 onDelete={() => onDeleteColumn(column.id)}
+                onArchiveAllCards={() => onArchiveAllCards(column.id)}
                 onAddCard={(title) => onAddCard(column.id, title)}
                 onArchiveCard={onArchiveCard}
                 onEditCard={onEditCard}

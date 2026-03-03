@@ -5,6 +5,7 @@ import {
   updateColumn,
   deleteColumn,
   reorderColumns,
+  archiveAllCards as archiveAllCardsApi,
 } from "../api/columns";
 import { createCard, updateCard, archiveCard, moveCard } from "../api/cards";
 import type { Column } from "../types";
@@ -41,6 +42,11 @@ export function useColumns() {
 
   const removeColumn = async (id: string) => {
     await deleteColumn(id);
+    await load();
+  };
+
+  const archiveAllCards = async (columnId: string) => {
+    await archiveAllCardsApi(columnId);
     await load();
   };
 
@@ -90,6 +96,7 @@ export function useColumns() {
     addColumn,
     editColumn,
     removeColumn,
+    archiveAllCards,
     reorder,
     addCard,
     editCard,

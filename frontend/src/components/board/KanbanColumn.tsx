@@ -14,6 +14,7 @@ interface KanbanColumnProps {
   onRename: (name: string) => void;
   onToggleDone: () => void;
   onDelete: () => void;
+  onArchiveAllCards: () => void;
   onAddCard: (title: string) => void;
   onArchiveCard: (cardId: string) => void;
   onEditCard: (cardId: string) => void;
@@ -25,6 +26,7 @@ export function KanbanColumn({
   onRename,
   onToggleDone,
   onDelete,
+  onArchiveAllCards,
   onAddCard,
   onArchiveCard,
   onEditCard,
@@ -43,6 +45,7 @@ export function KanbanColumn({
         onRename={onRename}
         onToggleDone={onToggleDone}
         onDelete={onDelete}
+        onArchiveAllCards={onArchiveAllCards}
         onAddCard={() => onAddCard("")}
       />
       <div

@@ -6,6 +6,7 @@ interface ColumnHeaderProps {
   onRename: (name: string) => void;
   onToggleDone: () => void;
   onDelete: () => void;
+  onArchiveAllCards: () => void;
   onAddCard: () => void;
 }
 
@@ -14,6 +15,7 @@ export function ColumnHeader({
   onRename,
   onToggleDone,
   onDelete,
+  onArchiveAllCards,
   onAddCard,
 }: ColumnHeaderProps) {
   const [editing, setEditing] = useState(false);
@@ -36,7 +38,7 @@ export function ColumnHeader({
   };
 
   return (
-    <div className="sticky top-0 flex items-center justify-between p-4">
+    <div className="sticky top-0 z-10 flex items-center justify-between p-4">
       <div className="flex items-center gap-2">
         {editing ? (
           <input
@@ -83,44 +85,62 @@ export function ColumnHeader({
           </span>
         </button>
         {menuOpen && (
-          <div className="absolute top-8 right-0 z-20 w-44 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
-            <button
-              onClick={() => {
-                setEditing(true);
-                setMenuOpen(false);
-              }}
-              className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[#0d141b] hover:bg-slate-50"
-            >
-              <span className="material-symbols-outlined text-[18px]">
-                edit
-              </span>
-              Rename
-            </button>
-            <button
-              onClick={() => {
-                onToggleDone();
-                setMenuOpen(false);
-              }}
-              className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[#0d141b] hover:bg-slate-50"
-            >
-              <span className="material-symbols-outlined text-[18px]">
-                {column.is_done_column ? "remove_done" : "done_all"}
-              </span>
-              {column.is_done_column ? "Unmark as Done" : "Mark as Done"}
-            </button>
-            <button
-              onClick={() => {
-                onDelete();
-                setMenuOpen(false);
-              }}
-              className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-50"
-            >
-              <span className="material-symbols-outlined text-[18px]">
-                delete
-              </span>
-              Delete Column
-            </button>
-          </div>
+          <>
+            <div
+              className="fixed inset-0 z-10"
+              onClick={() => setMenuOpen(false)}
+            />
+            <div className="absolute top-8 right-0 z-20 w-44 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
+              <button
+                onClick={() => {
+                  setEditing(true);
+                  setMenuOpen(false);
+                }}
+                className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[#0d141b] hover:bg-slate-50"
+              >
+                <span className="material-symbols-outlined text-[18px]">
+                  edit
+                </span>
+                Rename
+              </button>
+              <button
+                onClick={() => {
+                  onToggleDone();
+                  setMenuOpen(false);
+                }}
+                className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[#0d141b] hover:bg-slate-50"
+              >
+                <span className="material-symbols-outlined text-[18px]">
+                  {column.is_done_column ? "remove_done" : "done_all"}
+                </span>
+                {column.is_done_column ? "Unmark as Done" : "Mark as Done"}
+              </button>
+              <button
+                onClick={() => {
+                  onArchiveAllCards();
+                  setMenuOpen(false);
+                }}
+                className="flex w-full items-center gap-2 px-3 py-2 text-sm text-[#0d141b] hover:bg-slate-50"
+              >
+                <span className="material-symbols-outlined text-[18px]">
+                  inventory_2
+                </span>
+                Archive All Cards
+              </button>
+              <button
+                onClick={() => {
+                  onDelete();
+                  setMenuOpen(false);
+                }}
+                className="flex w-full items-center gap-2 px-3 py-2 text-sm text-red-500 hover:bg-red-50"
+              >
+                <span className="material-symbols-outlined text-[18px]">
+                  delete
+                </span>
+                Delete Column
+              </button>
+            </div>
+          </>
         )}
       </div>
     </div>

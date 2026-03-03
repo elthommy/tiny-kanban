@@ -34,6 +34,13 @@ export async function deleteColumn(id: string): Promise<void> {
   if (!res.ok) throw new Error("Failed to delete column");
 }
 
+export async function archiveAllCards(columnId: string): Promise<void> {
+  const res = await fetch(`/api/columns/${columnId}/archive-cards`, {
+    method: "POST",
+  });
+  if (!res.ok) throw new Error("Failed to archive cards");
+}
+
 export async function reorderColumns(columnIds: string[]): Promise<Column[]> {
   const res = await fetch("/api/columns/reorder", {
     method: "PUT",
