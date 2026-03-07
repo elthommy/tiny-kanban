@@ -13,7 +13,7 @@ anyio==4.12.1
     #   httpx
     #   starlette
     #   watchfiles
-black==26.1.0
+black==26.3.0
     # via taskflow-backend (pyproject.toml)
 certifi==2026.2.25
     # via
@@ -55,7 +55,7 @@ packaging==26.0
     #   pytest
 pathspec==1.0.4
     # via black
-platformdirs==4.9.2
+platformdirs==4.9.4
     # via black
 pluggy==1.6.0
     # via pytest
