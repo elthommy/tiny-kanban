@@ -23,7 +23,7 @@ click==8.3.1
     # via
     #   black
     #   uvicorn
-fastapi==0.134.0
+fastapi==0.135.1
     # via taskflow-backend (pyproject.toml)
 greenlet==3.3.2
     # via sqlalchemy
@@ -74,7 +74,7 @@ pygments==2.19.2
     # via pytest
 pytest==9.0.2
     # via taskflow-backend (pyproject.toml)
-python-dotenv==1.2.1
+python-dotenv==1.2.2
     # via
     #   pydantic-settings
     #   uvicorn
@@ -82,7 +82,7 @@ pytokens==0.4.1
     # via black
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.0.47
+sqlalchemy==2.0.48
     # via
     #   taskflow-backend (pyproject.toml)
     #   alembic
