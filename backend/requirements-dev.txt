@@ -13,7 +13,7 @@ anyio==4.12.1
     #   httpx
     #   starlette
     #   watchfiles
-black==26.3.0
+black==26.3.1
     # via taskflow-backend (pyproject.toml)
 certifi==2026.2.25
     # via
