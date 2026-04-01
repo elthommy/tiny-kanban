@@ -19,6 +19,7 @@ updates:
       prefix: "npm"
       include: "scope"
     # Ignore ESLint 10.x until eslint-plugin-react-hooks supports it
+    # Ignore TypeScript 6.x until typescript-eslint supports it
     ignore:
       - dependency-name: "eslint"
         update-types: ["version-update:semver-major"]
@@ -26,16 +27,21 @@ updates:
       - dependency-name: "@eslint/js"
         update-types: ["version-update:semver-major"]
         versions: ["10.x"]
-    # Group minor and patch updates together
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+        versions: ["6.x"]
+    # Group all updates (including major) together so related upgrades are tested as a unit
     groups:
       development-dependencies:
         dependency-type: "development"
         update-types:
+          - "major"
           - "minor"
           - "patch"
       production-dependencies:
         dependency-type: "production"
         update-types:
+          - "major"
           - "minor"
           - "patch"
 
@@ -55,16 +61,18 @@ updates:
     commit-message:
       prefix: "pip"
       include: "scope"
-    # Group minor and patch updates together
+    # Group all updates (including major) together so related upgrades are tested as a unit
     groups:
       development-dependencies:
         dependency-type: "development"
         update-types:
+          - "major"
           - "minor"
           - "patch"
       production-dependencies:
         dependency-type: "production"
         update-types:
+          - "major"
           - "minor"
           - "patch"
 
