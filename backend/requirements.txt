@@ -12,9 +12,9 @@ anyio==4.13.0
     # via
     #   starlette
     #   watchfiles
-click==8.3.1
+click==8.3.2
     # via uvicorn
-fastapi==0.135.2
+fastapi==0.135.3
     # via taskflow-backend (pyproject.toml)
 greenlet==3.3.2
     # via sqlalchemy
@@ -43,7 +43,7 @@ python-dotenv==1.2.2
     #   uvicorn
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.0.48
+sqlalchemy==2.0.49
     # via
     #   taskflow-backend (pyproject.toml)
     #   alembic
@@ -62,7 +62,7 @@ typing-inspection==0.4.2
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.42.0
+uvicorn==0.43.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
