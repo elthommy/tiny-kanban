@@ -16,7 +16,7 @@ click==8.3.2
     # via uvicorn
 fastapi==0.135.3
     # via taskflow-backend (pyproject.toml)
-greenlet==3.3.2
+greenlet==3.4.0
     # via sqlalchemy
 h11==0.16.0
     # via uvicorn
@@ -62,7 +62,7 @@ typing-inspection==0.4.2
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.43.0
+uvicorn==0.44.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
