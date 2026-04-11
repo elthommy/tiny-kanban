@@ -55,7 +55,7 @@ packaging==26.0
     #   pytest
 pathspec==1.0.4
     # via black
-platformdirs==4.9.4
+platformdirs==4.9.6
     # via black
 pluggy==1.6.0
     # via pytest
@@ -72,7 +72,7 @@ pyflakes==3.4.0
     # via taskflow-backend (pyproject.toml)
 pygments==2.20.0
     # via pytest
-pytest==9.0.2
+pytest==9.0.3
     # via taskflow-backend (pyproject.toml)
 python-dotenv==1.2.2
     # via
