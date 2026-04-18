@@ -7,10 +7,10 @@ name = "taskflow-backend"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
-    "fastapi>=0.115",
+    "fastapi>=0.136.0",
     "uvicorn[standard]>=0.44.0",
     "sqlalchemy>=2.0",
-    "pydantic>=2.0",
+    "pydantic>=2.13.2",
     "pydantic-settings>=2.0",
     "aiosqlite>=0.20",
     "alembic>=1.13.0",
