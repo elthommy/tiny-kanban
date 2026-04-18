@@ -24,6 +24,7 @@ export function useColumns() {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- legitimate data-fetching on mount
     load();
   }, [load]);
 
