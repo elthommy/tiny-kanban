@@ -49,7 +49,7 @@ markupsafe==3.0.3
     # via mako
 mypy-extensions==1.1.0
     # via black
-packaging==26.0
+packaging==26.1
     # via
     #   black
     #   pytest
