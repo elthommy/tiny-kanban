@@ -16,6 +16,13 @@ export function useArchive(mode: ArchiveMode = "all") {
 
   const RECENT_LIMIT = 20;
 
+  const [prevMode, setPrevMode] = useState(mode);
+  if (prevMode !== mode) {
+    setPrevMode(mode);
+    setPage(1);
+    setItems([]);
+  }
+
   const load = useCallback(async () => {
     setLoading(true);
     try {
@@ -34,12 +41,7 @@ export function useArchive(mode: ArchiveMode = "all") {
   }, [page, search, mode]);
 
   useEffect(() => {
-    // Reset page when mode changes
-    setPage(1);
-    setItems([]);
-  }, [mode]);
-
-  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- legitimate data-fetching on mount/deps change
     load();
   }, [load]);
 
