@@ -15,7 +15,7 @@ anyio==4.13.0
     #   watchfiles
 black==26.3.1
     # via taskflow-backend (pyproject.toml)
-certifi==2026.2.25
+certifi==2026.4.22
     # via
     #   httpcore
     #   httpx
@@ -49,11 +49,11 @@ markupsafe==3.0.3
     # via mako
 mypy-extensions==1.1.0
     # via black
-packaging==26.1
+packaging==26.2
     # via
     #   black
     #   pytest
-pathspec==1.0.4
+pathspec==1.1.0
     # via black
 platformdirs==4.9.6
     # via black
