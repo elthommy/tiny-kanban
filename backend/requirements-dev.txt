@@ -19,11 +19,11 @@ certifi==2026.2.25
     # via
     #   httpcore
     #   httpx
-click==8.3.2
+click==8.3.3
     # via
     #   black
     #   uvicorn
-fastapi==0.136.0
+fastapi==0.136.1
     # via taskflow-backend (pyproject.toml)
 greenlet==3.4.0
     # via sqlalchemy
@@ -37,7 +37,7 @@ httptools==0.7.1
     # via uvicorn
 httpx==0.28.1
     # via taskflow-backend (pyproject.toml)
-idna==3.11
+idna==3.13
     # via
     #   anyio
     #   httpx
@@ -59,14 +59,14 @@ platformdirs==4.9.6
     # via black
 pluggy==1.6.0
     # via pytest
-pydantic==2.13.2
+pydantic==2.13.3
     # via
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.46.2
+pydantic-core==2.46.3
     # via pydantic
-pydantic-settings==2.13.1
+pydantic-settings==2.14.0
     # via taskflow-backend (pyproject.toml)
 pyflakes==3.4.0
     # via taskflow-backend (pyproject.toml)
@@ -101,7 +101,7 @@ typing-inspection==0.4.2
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.44.0
+uvicorn==0.46.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
