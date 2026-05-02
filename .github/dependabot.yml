@@ -30,16 +30,11 @@ updates:
       - dependency-name: "typescript"
         update-types: ["version-update:semver-major"]
         versions: ["6.x"]
-    # Group all updates (including major) together so related upgrades are tested as a unit
+    # Single group: batch all updates (dev + prod, all semver levels) into one PR
     groups:
-      development-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "major"
-          - "minor"
-          - "patch"
-      production-dependencies:
-        dependency-type: "production"
+      npm-dependencies:
+        patterns:
+          - "*"
         update-types:
           - "major"
           - "minor"
@@ -61,16 +56,11 @@ updates:
     commit-message:
       prefix: "pip"
       include: "scope"
-    # Group all updates (including major) together so related upgrades are tested as a unit
+    # Single group: batch all updates (dev + prod, all semver levels) into one PR
     groups:
-      development-dependencies:
-        dependency-type: "development"
-        update-types:
-          - "major"
-          - "minor"
-          - "patch"
-      production-dependencies:
-        dependency-type: "production"
+      pip-dependencies:
+        patterns:
+          - "*"
         update-types:
           - "major"
           - "minor"
@@ -89,3 +79,12 @@ updates:
       - "github-actions"
     commit-message:
       prefix: "ci"
+    # Single group: batch all action bumps into one PR
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+        update-types:
+          - "major"
+          - "minor"
+          - "patch"
