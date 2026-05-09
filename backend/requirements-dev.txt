@@ -59,14 +59,14 @@ platformdirs==4.9.6
     # via black
 pluggy==1.6.0
     # via pytest
-pydantic==2.13.3
+pydantic==2.13.4
     # via
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.46.3
+pydantic-core==2.46.4
     # via pydantic
-pydantic-settings==2.14.0
+pydantic-settings==2.14.1
     # via taskflow-backend (pyproject.toml)
 pyflakes==3.4.0
     # via taskflow-backend (pyproject.toml)
