@@ -62,11 +62,11 @@ typing-inspection==0.4.2
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.50.0
+uvicorn==0.51.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
 watchfiles==1.2.0
     # via uvicorn
-websockets==16.0
+websockets==16.1
     # via uvicorn
