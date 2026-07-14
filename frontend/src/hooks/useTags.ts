@@ -13,8 +13,8 @@ export function useTags() {
     fetchTags().then(setTags);
   }, []);
 
-  const addTag = async (name: string, color: string) => {
-    await createTag(name, color);
+  const addTag = async (data: { name: string; bg_color: string }) => {
+    await createTag(data);
     await load();
   };
 

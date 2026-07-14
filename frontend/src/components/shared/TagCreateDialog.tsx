@@ -8,7 +8,7 @@ interface TagCreateDialogProps {
 
 export function TagCreateDialog({ onSave, onClose }: TagCreateDialogProps) {
   const [name, setName] = useState("");
-  const [bgColor, setBgColor] = useState(TAG_COLORS[10].hex); // Blue default
+  const [bgColor, setBgColor] = useState<string>(TAG_COLORS[10].hex); // Blue default
 
   const fgColor = getTextColor(bgColor);
 

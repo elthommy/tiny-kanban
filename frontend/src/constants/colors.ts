@@ -42,7 +42,7 @@ function colorDistance(hex1: string, hex2: string): number {
 }
 
 export function findClosestColor(hex: string): string {
-  let closest = TAG_COLORS[0].hex;
+  let closest: string = TAG_COLORS[0].hex;
   let minDist = Infinity;
   for (const c of TAG_COLORS) {
     const dist = colorDistance(hex, c.hex);
