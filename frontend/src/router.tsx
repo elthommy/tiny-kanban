@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router";
 import { AppLayout } from "./components/layout/AppLayout";
 import { BoardPage } from "./pages/BoardPage";
 import { ArchivePage } from "./pages/ArchivePage";
