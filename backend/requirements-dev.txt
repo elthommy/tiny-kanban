@@ -6,7 +6,7 @@ alembic==1.18.5
     # via taskflow-backend (pyproject.toml)
 annotated-doc==0.0.4
     # via fastapi
-annotated-types==0.7.0
+annotated-types==0.8.0
     # via pydantic
 anyio==4.14.2
     # via
@@ -15,7 +15,7 @@ anyio==4.14.2
     #   watchfiles
 black==26.5.1
     # via taskflow-backend (pyproject.toml)
-certifi==2026.6.17
+certifi==2026.7.22
     # via
     #   httpcore
     #   httpx
@@ -23,9 +23,9 @@ click==8.4.2
     # via
     #   black
     #   uvicorn
-fastapi==0.139.2
+fastapi==0.140.0
     # via taskflow-backend (pyproject.toml)
-greenlet==3.5.3
+greenlet==3.5.4
     # via sqlalchemy
 h11==0.16.0
     # via
@@ -55,7 +55,7 @@ packaging==26.2
     #   pytest
 pathspec==1.1.1
     # via black
-platformdirs==4.10.1
+platformdirs==4.11.0
     # via black
 pluggy==1.6.0
     # via pytest
@@ -64,7 +64,7 @@ pydantic==2.13.4
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.47.0
+pydantic-core==2.46.4
     # via pydantic
 pydantic-settings==2.14.2
     # via taskflow-backend (pyproject.toml)
