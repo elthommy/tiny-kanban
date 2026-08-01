@@ -4,7 +4,7 @@ aiosqlite==0.22.1
     # via taskflow-backend (pyproject.toml)
 alembic==1.18.5
     # via taskflow-backend (pyproject.toml)
-annotated-doc==0.0.4
+annotated-doc==0.0.5
     # via fastapi
 annotated-types==0.8.0
     # via pydantic
@@ -23,7 +23,7 @@ click==8.4.2
     # via
     #   black
     #   uvicorn
-fastapi==0.140.0
+fastapi==0.140.13
     # via taskflow-backend (pyproject.toml)
 greenlet==3.5.4
     # via sqlalchemy
@@ -101,7 +101,7 @@ typing-inspection==0.4.2
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.51.0
+uvicorn==0.52.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
