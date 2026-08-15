@@ -2,7 +2,7 @@
 #    uv pip compile pyproject.toml --python .venv/bin/python --extra dev --output-file requirements-dev.txt
 aiosqlite==0.22.1
     # via taskflow-backend (pyproject.toml)
-alembic==1.19.0
+alembic==1.19.1
     # via taskflow-backend (pyproject.toml)
 annotated-doc==0.0.5
     # via fastapi
@@ -25,7 +25,7 @@ click==8.4.2
     #   uvicorn
 fastapi==0.141.1
     # via taskflow-backend (pyproject.toml)
-greenlet==3.5.4
+greenlet==3.5.5
     # via sqlalchemy
 h11==0.16.0
     # via
@@ -55,7 +55,7 @@ packaging==26.3
     #   pytest
 pathspec==1.1.1
     # via black
-platformdirs==4.11.0
+platformdirs==4.11.2
     # via black
 pluggy==1.6.0
     # via pytest
@@ -64,9 +64,9 @@ pydantic==2.13.4
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.47.0
+pydantic-core==2.48.0
     # via pydantic
-pydantic-settings==2.14.2
+pydantic-settings==2.15.0
     # via taskflow-backend (pyproject.toml)
 pyflakes==3.4.0
     # via taskflow-backend (pyproject.toml)
@@ -82,11 +82,11 @@ pytokens==0.4.1
     # via black
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.0.51
+sqlalchemy==2.0.52
     # via
     #   taskflow-backend (pyproject.toml)
     #   alembic
-starlette==1.4.0
+starlette==1.6.0
     # via fastapi
 typing-extensions==4.16.0
     # via
@@ -96,7 +96,7 @@ typing-extensions==4.16.0
     #   pydantic-core
     #   sqlalchemy
     #   typing-inspection
-typing-inspection==0.4.2
+typing-inspection==0.4.4
     # via
     #   fastapi
     #   pydantic
