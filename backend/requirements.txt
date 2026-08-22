@@ -22,7 +22,7 @@ h11==0.16.0
     # via uvicorn
 httptools==0.8.0
     # via uvicorn
-idna==3.18
+idna==3.19
     # via anyio
 mako==1.4.1
     # via alembic
@@ -37,7 +37,7 @@ pydantic-core==2.48.0
     # via pydantic
 pydantic-settings==2.15.0
     # via taskflow-backend (pyproject.toml)
-python-dotenv==1.2.2
+python-dotenv==1.2.3
     # via
     #   pydantic-settings
     #   uvicorn
@@ -62,7 +62,7 @@ typing-inspection==0.4.4
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.52.1
+uvicorn==0.52.4
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn
