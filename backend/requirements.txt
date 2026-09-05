@@ -12,7 +12,7 @@ anyio==4.14.2
     # via
     #   starlette
     #   watchfiles
-click==8.4.2
+click==8.5.0
     # via uvicorn
 fastapi==0.141.1
     # via taskflow-backend (pyproject.toml)
@@ -28,7 +28,7 @@ mako==1.4.1
     # via alembic
 markupsafe==3.0.3
     # via mako
-pydantic==2.13.4
+pydantic==2.13.5
     # via
     #   taskflow-backend (pyproject.toml)
     #   fastapi
@@ -68,5 +68,5 @@ uvloop==0.22.1
     # via uvicorn
 watchfiles==1.2.0
     # via uvicorn
-websockets==17.0.1
+websockets==17.1
     # via uvicorn
