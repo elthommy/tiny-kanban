@@ -2,7 +2,7 @@
 #    uv pip compile pyproject.toml --python .venv/bin/python --output-file requirements.txt
 aiosqlite==0.22.1
     # via taskflow-backend (pyproject.toml)
-alembic==1.19.2
+alembic==1.20.0
     # via taskflow-backend (pyproject.toml)
 annotated-doc==0.0.5
     # via fastapi
@@ -16,7 +16,7 @@ click==8.5.0
     # via uvicorn
 fastapi==0.141.1
     # via taskflow-backend (pyproject.toml)
-greenlet==3.5.5
+greenlet==3.5.6
     # via sqlalchemy
 h11==0.16.0
     # via uvicorn
@@ -33,7 +33,7 @@ pydantic==2.13.5
     #   taskflow-backend (pyproject.toml)
     #   fastapi
     #   pydantic-settings
-pydantic-core==2.48.0
+pydantic-core==2.49.0
     # via pydantic
 pydantic-settings==2.15.0
     # via taskflow-backend (pyproject.toml)
@@ -43,7 +43,7 @@ python-dotenv==1.2.3
     #   uvicorn
 pyyaml==6.0.3
     # via uvicorn
-sqlalchemy==2.0.52
+sqlalchemy==2.0.54
     # via
     #   taskflow-backend (pyproject.toml)
     #   alembic
@@ -62,7 +62,7 @@ typing-inspection==0.4.4
     #   fastapi
     #   pydantic
     #   pydantic-settings
-uvicorn==0.52.4
+uvicorn==0.53.0
     # via taskflow-backend (pyproject.toml)
 uvloop==0.22.1
     # via uvicorn

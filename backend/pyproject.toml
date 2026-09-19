@@ -8,12 +8,12 @@ version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.141.1",
-    "uvicorn[standard]>=0.52.4",
-    "sqlalchemy>=2.0.52",
+    "uvicorn[standard]>=0.53.0",
+    "sqlalchemy>=2.0.54",
     "pydantic>=2.13.5",
     "pydantic-settings>=2.15.0",
     "aiosqlite>=0.20",
-    "alembic>=1.19.2",
+    "alembic>=1.20.0",
 ]
 
 [project.optional-dependencies]
