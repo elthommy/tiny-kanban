@@ -2,6 +2,10 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+> [!NOTE]
+> **This project is archived and superseded by [tiny-kanban-v2](https://github.com/elthommy/tiny-kanban-v2).**
+> It remains available as a reference but no longer receives updates.
+
 A full-stack Kanban board application with a Python/FastAPI backend and a React/TypeScript frontend, styled to match Google Stitch designs.
 
 ![Screenshot](./doc/screenshots/tiny-kanban_dashboard.png)
